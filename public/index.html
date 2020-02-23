@@ -19,7 +19,27 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="ebook-content"></div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="file-path-input">Epub file:</label>
+              <input type="file" id="file-path-input">
+              <p class="help-block">Please choose an epub file.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="ebook-content panel-body"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   <!-- You can also require other files to run in this process -->
