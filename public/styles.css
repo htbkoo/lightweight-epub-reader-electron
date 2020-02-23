@@ -1,6 +1,7 @@
 html, body, .container-fluid {
   height: 100%;
   background-color: #111;
+  color: aliceblue;
 }
 
 html {
@@ -12,5 +13,5 @@ html {
 }
 
 .ebook-content{
-  color: aliceblue;
+  color: #111;
 }
