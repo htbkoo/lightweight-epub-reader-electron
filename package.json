@@ -20,8 +20,12 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@types/jquery": "^3.3.33",
     "electron": "^6.0.8",
     "tslint": "^5.19.0",
     "typescript": "^3.6.0"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
   }
 }
