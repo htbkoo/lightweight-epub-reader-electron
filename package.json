@@ -29,7 +29,7 @@
     "typescript": "^3.6.0"
   },
   "dependencies": {
-    "epub-chinese-converter": "0.0.3",
+    "epub-chinese-converter": "0.1.0",
     "jquery": "^3.4.1"
   }
 }
