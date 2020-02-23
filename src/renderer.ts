@@ -6,7 +6,7 @@
     console.log("at renderer.ts");
 
     const {readEpub} = require('epub-chinese-converter');
-    const path = require('path');
+    const {dialog} = require('electron').remote;
     const $ = require('jquery');
 
     const $ebookTextArea = $(".ebook-content");
@@ -19,10 +19,6 @@
 
     $fileInput.on("click", evt => {
         evt.preventDefault();
-
-        // const {dialog} = require('electron');
-        const {dialog} = require('electron').remote;
-        // console.log(dialog.showOpenDialog({properties: ['openFile', 'multiSelections']}));
 
         dialog.showOpenDialog({properties: ['openFile',]})
             .then(({canceled,filePaths }) => {
