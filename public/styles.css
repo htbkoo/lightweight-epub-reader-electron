@@ -1,0 +1,16 @@
+html, body, .container-fluid {
+  height: 100%;
+  background-color: #111;
+}
+
+html {
+  -webkit-app-region: drag;
+}
+
+.container-fluid {
+  padding: 25px;
+}
+
+.ebook-content{
+  color: aliceblue;
+}
