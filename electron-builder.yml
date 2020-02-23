@@ -1,0 +1,14 @@
+productName: LightweightEpubReader
+appId: io.github.htbkoo.lightweighteupbreader
+mac:
+  category: public.app-category.utilities
+directories:
+  output: release
+files:
+  - dist/
+  - node_modules/
+  - package.json
+linux:
+  target: deb
+win:
+  target: nsis
