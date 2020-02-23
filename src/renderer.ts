@@ -21,32 +21,15 @@
         evt.preventDefault();
 
         dialog.showOpenDialog({properties: ['openFile',]})
-            .then(({canceled,filePaths }) => {
-                if (!canceled && filePaths){
+            .then(({canceled, filePaths}) => {
+                if (!canceled && filePaths) {
                     console.log(`opened: ${JSON.stringify(filePaths)}`);
                     return loadEpubToTextArea(filePaths[0]);
                 }
             });
     });
 
-    // $(() => {
-    //     const BOOK_URL = path.normalize(`${__dirname}/../resources/book.epub`);
-    //     $ebookTextArea.text(`Loading ebook from "${BOOK_URL}"`);
-    //
-    //     readEpub(BOOK_URL)
-    //         .then(book => {
-    //             $ebookTextArea.text(convertBookAsString(book));
-    //         });
-    //
-    //     function convertBookAsString({chapters}) {
-    //         console.log("at convertBookAsString");
-    //         return Object.keys(chapters)
-    //             .map(id => chapters[id].text)
-    //             .toString();
-    //     }
-    // });
-
-    async function loadEpubToTextArea(filepath: string){
+    async function loadEpubToTextArea(filepath: string) {
         $ebookTextArea.text(`Loading ebook from "${filepath}"`);
 
         return readEpub(filepath)
@@ -61,5 +44,4 @@
                 .toString();
         }
     }
-
 })();
