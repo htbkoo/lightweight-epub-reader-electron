@@ -6,9 +6,13 @@ directories:
   output: release
 files:
   - dist/
+  - public/
   - node_modules/
   - package.json
 linux:
   target: deb
 win:
-  target: nsis
+  target:
+    - portable
+portable:
+  artifactName: lightweight_epub_reader_portable.exe
