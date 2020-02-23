@@ -22,10 +22,6 @@
 
         dialog.showOpenDialog({properties: ['openFile',]})
             .then(({canceled,filePaths }) => {
-                /*
-                opened: {"canceled":true,"filePaths":[]}
-                opened: {"canceled":false,"filePaths":["C:\\Users\\Hey\\Desktop\\PROJECTS\\self\\electron-quick-start-typescript\\resources\\book.epub"]}
-                * */
                 if (!canceled && filePaths){
                     console.log(`opened: ${JSON.stringify(filePaths)}`);
                     return loadEpubToTextArea(filePaths[0]);
