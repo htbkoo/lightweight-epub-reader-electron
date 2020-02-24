@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
+import isDev from "electron-is-dev";
 
 let mainWindow: Electron.BrowserWindow;
 
@@ -18,8 +19,13 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "../public/index.html"));
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (isDev) {
+    // Open the DevTools.
+    console.log('Running in development');
+    mainWindow.webContents.openDevTools();
+  } else {
+    console.log('Running in production');
+  }
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
