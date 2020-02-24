@@ -2,10 +2,11 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
+import {readEpub} from "epub-chinese-converter";
+
 (function () {
     console.log("at renderer.ts");
 
-    const {readEpub} = require('epub-chinese-converter');
     const {dialog} = require('electron').remote;
     const $ = require('jquery');
 
