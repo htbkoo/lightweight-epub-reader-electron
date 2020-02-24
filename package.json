@@ -23,7 +23,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "@types/jquery": "^3.3.33",
-    "electron": "7.x.x",
+    "electron": "8.x.x",
     "electron-builder": "^22.3.2",
     "tslint": "^5.19.0",
     "typescript": "^3.6.0"
