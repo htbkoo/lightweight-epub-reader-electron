@@ -1,6 +1,6 @@
 {
   "name": "lightweight-epub-reader-electron",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": " A lightweight epub-reader desktop app created with electron",
   "main": "./dist/main.js",
   "scripts": {
