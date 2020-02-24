@@ -8,7 +8,9 @@
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "npm run build && electron ./dist/main.js",
-    "dist": "npm run build && electron-builder"
+    "dep:clean": "rimraf node_modules",
+    "dep:install-no-optional": "npm i --no-optional",
+    "dist": "npm run dep:clean --silent || npm run dep:install-no-optional && npm run build && electron-builder"
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
   "keywords": [
