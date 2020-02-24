@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start-typescript",
-  "version": "1.0.0",
-  "description": "A minimal Electron application written with Typescript",
+  "name": "lightweight-epub-reader-electron",
+  "version": "0.0.0",
+  "description": " A lightweight epub-reader desktop app created with electron",
   "main": "./dist/main.js",
   "scripts": {
     "build": "tsc",
@@ -12,17 +12,18 @@
     "dep:install-no-optional": "npm i --no-optional",
     "dist": "npm run dep:clean --silent || npm run dep:install-no-optional && npm run build && electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start-typescript",
+  "repository": "https://github.com/htbkoo/lightweight-epub-reader-electron",
   "keywords": [
+    "epub",
+    "lightweight",
+    "reader",
     "Electron",
     "quick",
     "start",
-    "tutorial",
-    "demo",
     "typescript"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "htbkoo",
+  "license": "MIT",
   "devDependencies": {
     "@types/jquery": "^3.3.33",
     "electron": "8.x.x",
