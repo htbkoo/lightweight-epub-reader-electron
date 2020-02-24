@@ -25,10 +25,12 @@
     "@types/jquery": "^3.3.33",
     "electron": "8.x.x",
     "electron-builder": "^22.3.2",
+    "rimraf": "^3.0.2",
     "tslint": "^5.19.0",
     "typescript": "^3.6.0"
   },
   "dependencies": {
+    "electron-is-dev": "^1.1.0",
     "epub-chinese-converter": "0.1.2",
     "jquery": "^3.4.1"
   }
