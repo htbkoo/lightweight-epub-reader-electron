@@ -85,7 +85,7 @@
   "dependencies": {
     "dompurify": "^2.0.8",
     "electron-is-dev": "^1.1.0",
-    "epub-chinese-converter": "0.1.4",
+    "epub-chinese-converter": "0.1.6",
     "jquery": "^3.4.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
