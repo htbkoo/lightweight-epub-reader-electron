@@ -6,7 +6,7 @@ import LoadBookPanel from '../../src/renderer/components/LoadBookPanel';
 describe('<LoadBookPanel/>', () => {
     it('renders correctly', () => {
         const tree = renderer
-            .create(<LoadBookPanel loadBook={jest.fn()}/>)
+            .create(<LoadBookPanel setBookContent={jest.fn()}/>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

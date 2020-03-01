@@ -1,16 +1,16 @@
 import { Action, ActionCreator } from 'redux';
 import {Book} from "epub-chinese-converter";
 
-export const LOAD_BOOK = 'LOAD_BOOK';
+export const SET_BOOK_CONTENT = 'SET_BOOK_CONTENT';
 
-export interface LoadBookAction extends Action {
-    type: typeof LOAD_BOOK;
+export interface SetBookCotentAction extends Action {
+    type: typeof SET_BOOK_CONTENT;
     book: Book.BookWithMeta
 }
 
-export const loadBook: ActionCreator<LoadBookAction> = (book: Book.BookWithMeta) => ({
-    type: LOAD_BOOK,
+export const setBookContent: ActionCreator<SetBookCotentAction> = (book: Book.BookWithMeta) => ({
+    type: SET_BOOK_CONTENT,
     book
 });
 
-export type BookAction = LoadBookAction;
+export type BookAction = SetBookCotentAction;

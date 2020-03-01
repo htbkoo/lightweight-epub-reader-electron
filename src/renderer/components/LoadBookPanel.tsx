@@ -4,14 +4,14 @@ import {Book, readEpub} from "epub-chinese-converter";
 import {getElectronDialog} from "../helpers/helpers";
 
 export interface Props {
-    loadBook: (book: Book.BookWithMeta) => any
+    setBookContent: (book: Book.BookWithMeta) => any
 }
 
-const LoadBookPanel = ({loadBook}: Props) => {
+const LoadBookPanel = ({setBookContent}: Props) => {
     return (
         <form className="form-horizontal">
             <div className="form-group">
-                <EpubFilePicker onFilePathChange={bookUrl => readEpub(bookUrl).then(loadBook)}/>
+                <EpubFilePicker onFilePathChange={bookUrl => readEpub(bookUrl).then(setBookContent)}/>
             </div>
         </form>
     )

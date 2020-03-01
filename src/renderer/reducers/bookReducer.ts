@@ -1,7 +1,7 @@
 import {Reducer} from 'redux';
 import {Book} from "epub-chinese-converter";
 
-import {BookAction, LOAD_BOOK} from '../actions/bookActions';
+import {BookAction, SET_BOOK_CONTENT} from '../actions/bookActions';
 
 export interface BookState {
     readonly bookWithMeta?: Book.BookWithMeta;
@@ -16,7 +16,7 @@ export const bookReducer: Reducer<BookState> = (
     action: BookAction
 ) => {
     switch (action.type) {
-        case LOAD_BOOK:
+        case SET_BOOK_CONTENT:
             return {
                 ...state,
                 bookWithMeta: action.book
