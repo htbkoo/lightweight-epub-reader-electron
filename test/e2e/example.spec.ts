@@ -2,6 +2,8 @@ import { Application } from 'spectron';
 import * as electronPath from 'electron';
 import * as path from 'path';
 
+import { APP_TITLE } from "../../src/constants/constants";
+
 jest.setTimeout(10000);
 
 describe('Main window', () => {
@@ -28,7 +30,7 @@ describe('Main window', () => {
         await client.waitUntilWindowLoaded();
         const title = await browserWindow.getTitle();
 
-        expect(title).toBe('Webpack App');
+        expect(title).toBe(APP_TITLE);
     });
 
     it('increments the counter', async () => {

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const baseConfig = require('./webpack.base.config');
+const {APP_TITLE} = require("./src/constants/constants");
 
 module.exports = merge.smart(baseConfig, {
     target: 'electron-renderer',
@@ -61,7 +62,7 @@ module.exports = merge.smart(baseConfig, {
             reportFiles: ['src/renderer/**/*']
         }),
         new webpack.NamedModulesPlugin(),
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({title: APP_TITLE}),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         })
