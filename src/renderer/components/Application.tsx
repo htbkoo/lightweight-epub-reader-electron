@@ -21,7 +21,6 @@ function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: strin
             .then(({canceled, filePaths}) => {
                 if (!canceled && filePaths) {
                     console.log(`opened: ${JSON.stringify(filePaths)}`);
-                    // return loadEpubToTextArea(filePaths[0]);
                     return onFilePathChange(filePaths[0]);
                 }
             });
