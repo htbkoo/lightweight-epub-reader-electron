@@ -1,9 +1,13 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
-import isDev from "electron-is-dev";
+import electronIsDev from "electron-is-dev";
 import * as url from "url";
 
 let mainWindow: Electron.BrowserWindow;
+
+function isDev() {
+  return process.env.NODE_ENV !== 'production' && electronIsDev;
+}
 
 function createWindow() {
   // Create the browser window.
@@ -17,7 +21,7 @@ function createWindow() {
     width: 800,
   });
 
-  if (process.env.NODE_ENV !== 'production' && isDev) {
+  if (isDev()) {
     // Open the DevTools.
     console.log('Running in development');
 
