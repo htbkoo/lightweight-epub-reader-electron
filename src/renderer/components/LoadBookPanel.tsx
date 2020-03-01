@@ -6,7 +6,7 @@ import {BookState} from "../reducers/bookReducer";
 
 const converter = createSimplifiedToTraditionalConverter();
 
-interface Props {
+export interface Props {
     book: BookState;
     setBookContent: (book: Book.BookWithMeta) => any;
     setFileName: (fileName: string) => any;
