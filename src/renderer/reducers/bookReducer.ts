@@ -10,7 +10,8 @@ const defaultState = {
 };
 
 export const bookReducer = combineReducers({
-    isLoadingBook: createReducer(defaultState.isLoadingBook),
+    isLoadingBook: createReducer(defaultState.isLoadingBook)
+        .handleAction([setBookContent], () => false),
     bookWithMeta: createReducer<Book.BookWithMeta>(defaultState.bookWithMeta)
         .handleAction([setBookContent], (state, action) => action.payload)
 });

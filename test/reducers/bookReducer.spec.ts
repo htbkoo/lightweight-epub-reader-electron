@@ -3,11 +3,11 @@ import {setBookContent} from "../../src/renderer/actions/bookActions";
 import {Book} from "epub-chinese-converter";
 
 describe('bookReducer', () => {
-    it('should setBookContent', () => {
+    it('should set bookWithMeta to book and isLoadingBook to false upon setBookContent', () => {
         // given
         const bookWithMeta: Book.BookWithMeta = {metadata: {}, chapters: {}};
         const prevState = {
-            isLoadingBook: false,
+            isLoadingBook: true,
             bookWithMeta: undefined,
         };
 
@@ -15,6 +15,7 @@ describe('bookReducer', () => {
         const newState = bookReducer(prevState, setBookContent(bookWithMeta));
 
         // then
+        expect(newState.isLoadingBook).toEqual(false);
         expect(newState.bookWithMeta).toEqual(bookWithMeta);
     });
 });
