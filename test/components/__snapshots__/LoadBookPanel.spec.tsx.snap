@@ -30,3 +30,34 @@ exports[`<LoadBookPanel/> renders correctly 1`] = `
   </div>
 </form>
 `;
+
+exports[`<LoadBookPanel/> renders when isLoadingBook 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="form-group"
+  >
+    <button
+      onClick={[Function]}
+    >
+      To Traditional Chinese
+    </button>
+    <label
+      htmlFor="file-path-input"
+    >
+      Epub file:
+    </label>
+    <input
+      id="file-path-input"
+      onClick={[Function]}
+      type="file"
+    />
+    <p
+      className="help-block"
+    >
+      
+    </p>
+  </div>
+</form>
+`;
