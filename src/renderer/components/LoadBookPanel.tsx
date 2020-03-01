@@ -1,8 +1,10 @@
 import * as React from 'react';
-import {Book, readEpub} from "epub-chinese-converter";
+import {Book, createSimplifiedToTraditionalConverter, readEpub} from "epub-chinese-converter";
 
 import {getElectronDialog} from "../helpers/helpers";
 import {BookState} from "../reducers/bookReducer";
+
+const converter = createSimplifiedToTraditionalConverter();
 
 interface Props {
     book: BookState;
@@ -15,6 +17,12 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
     return (
         <form className="form-horizontal">
             <div className="form-group">
+                <button onClick={e => {
+                    e.preventDefault();
+                    setBookContent(converter.convertBook(book.bookWithMeta))
+                }}>
+                    To Traditional Chinese
+                </button>
                 <EpubFilePicker onFilePathChange={handleFilePathChange} book={book}/>
             </div>
         </form>
