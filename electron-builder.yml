@@ -6,7 +6,6 @@ directories:
   output: release
 files:
   - dist/
-  - public/
   - node_modules/
   - package.json
 linux:
