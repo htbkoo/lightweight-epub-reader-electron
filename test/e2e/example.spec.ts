@@ -45,7 +45,7 @@ describe('Main window', () => {
         expect(title).toBe(APP_TITLE);
     });
 
-    it('increments the counter', async () => {
+    xit('increments the counter', async () => {
         const { client } = app;
 
         await client.waitUntilWindowLoaded();
@@ -56,7 +56,7 @@ describe('Main window', () => {
         expect(counterText).toBe('Current value: 1');
     });
 
-    it('decrements the counter', async () => {
+    xit('decrements the counter', async () => {
         const { client } = app;
 
         await client.waitUntilWindowLoaded();
