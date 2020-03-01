@@ -1,5 +1,5 @@
 import { Application } from 'spectron';
-import * as electronPath from 'electron';
+import electronPath from 'electron'; // Require Electron from the binaries included in node_modules.
 import * as path from 'path';
 
 import { APP_TITLE } from "../../src/constants/constants";
