@@ -76,6 +76,11 @@ function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: strin
     }
 }
 
+const styles = {
+    "body": {"padding": "25px", "backgroundColor": "#111", "color": "aliceblue",},
+    "ebook_content": {}
+};
+
 const Application = () => {
     const [book, setBook] = useState<Book.BookWithMeta | undefined>(undefined);
 
@@ -96,7 +101,7 @@ const Application = () => {
         : (<div>No book chosen yet</div>);
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={styles.body}>
             <div className="row">
                 <div className="col-md-12">
                     <form className="form-horizontal">
@@ -110,7 +115,7 @@ const Application = () => {
             <div className="row">
                 <div className="col-md-12">
                     <div className="panel panel-default">
-                        <div className="ebook-content panel-body">
+                        <div className="ebook-content panel-body" style={styles.ebook_content}>
                             {bookTextAreaIfLoaded}
                         </div>
                     </div>
