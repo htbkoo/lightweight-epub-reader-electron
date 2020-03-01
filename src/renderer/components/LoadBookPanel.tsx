@@ -4,11 +4,12 @@ import {Book, readEpub} from "epub-chinese-converter";
 import {getElectronDialog} from "../helpers/helpers";
 
 interface Props {
-    setBookContent: (book: Book.BookWithMeta) => any
-    notifyLoadingBook: () => any
+    setBookContent: (book: Book.BookWithMeta) => any;
+    setFileName: (fileName: string) => any;
+    notifyLoadingBook: () => any;
 }
 
-const LoadBookPanel = ({notifyLoadingBook, setBookContent}: Props) => {
+const LoadBookPanel = ({notifyLoadingBook, setFileName, setBookContent}: Props) => {
     return (
         <form className="form-horizontal">
             <div className="form-group">
@@ -19,6 +20,7 @@ const LoadBookPanel = ({notifyLoadingBook, setBookContent}: Props) => {
 
     function handleFilePathChange(bookUrl: string){
         notifyLoadingBook();
+        setFileName(bookUrl);
         return readEpub(bookUrl).then(setBookContent);
     }
 };
