@@ -19,7 +19,7 @@ describe('bookReducer', () => {
         expect(newState.bookWithMeta).toEqual(bookWithMeta);
     });
 
-    it('should notifyLoadingBook', () => {
+    it('should set isLoadingBook to true upon notifyLoadingBook', () => {
         // given
         const prevState = {
             isLoadingBook: false,
