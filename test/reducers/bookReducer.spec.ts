@@ -7,7 +7,10 @@ describe('bookReducer', () => {
         // given
         const bookWithMeta: Book.BookWithMeta = {metadata: {}, chapters: {}};
         const action = setBookContent(bookWithMeta);
-        const prevState = {};
+        const prevState = {
+            isLoadingBook: false,
+            bookWithMeta: undefined,
+        };
 
         // when
         const newState = bookReducer(prevState, action);
