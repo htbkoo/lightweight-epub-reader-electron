@@ -12,3 +12,13 @@ window.addEventListener("DOMContentLoaded", () => {
     replaceText(`${type}-version`, (process.versions as any)[type]);
   }
 });
+
+// A hack to fix Electron Dialog at React renderer which was not working without this hack
+// Reference: https://stackoverflow.com/a/53486446
+(function hackToFixElectronDialogAtReact(){
+  console.log(`at hackToFixElectronDialogAtReact`);
+
+  const { dialog } = require('electron').remote;
+  (window as any).electron = {};
+  (window as any).electron.dialog = dialog;
+})();
