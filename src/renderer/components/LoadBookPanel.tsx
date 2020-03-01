@@ -19,7 +19,9 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
             <div className="form-group">
                 <button onClick={e => {
                     e.preventDefault();
-                    setBookContent(converter.convertBook(book.bookWithMeta))
+                    if (book.bookWithMeta){
+                        setBookContent(converter.convertBook(book.bookWithMeta))
+                    }
                 }}>
                     To Traditional Chinese
                 </button>
