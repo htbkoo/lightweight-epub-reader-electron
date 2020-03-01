@@ -18,6 +18,7 @@ const BookTextArea = ({book}: Props) => {
             <div>
                 {Object.keys(chapters).map(chapterId => (
                     <div key={chapterId}
+                         id={chapterId}
                          dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(chapters[chapterId].text)}}/>
                 ))}
             </div>
