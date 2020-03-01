@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
 import LoadBookPanel from '../../src/renderer/components/LoadBookPanel';
-import {createBookState} from "../reducers/bookReducer.spec";
+import {createBookState} from "../utils/testUtils";
 
 describe('<LoadBookPanel/>', () => {
     it('renders correctly', () => {

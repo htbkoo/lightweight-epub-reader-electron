@@ -1,6 +1,7 @@
-import {bookReducer, BookState} from "../../src/renderer/reducers/bookReducer";
+import {bookReducer} from "../../src/renderer/reducers/bookReducer";
 import {notifyLoadingBook, setBookContent, setBookFileName} from "../../src/renderer/actions/bookActions";
 import {Book} from "epub-chinese-converter";
+import {createBookState} from "../utils/testUtils";
 
 describe('bookReducer', () => {
     it('should set bookWithMeta to book and isLoadingBook to false upon setBookContent', () => {
@@ -39,7 +40,3 @@ describe('bookReducer', () => {
         expect(newState.fileName).toEqual(fileName);
     });
 });
-
-export function createBookState(override: Partial<BookState> = {}): BookState {
-    return {isLoadingBook: false, fileName: null, bookWithMeta: null, ...override};
-}

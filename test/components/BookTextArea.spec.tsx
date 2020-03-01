@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {Book} from "epub-chinese-converter";
 
 import BookTextArea from '../../src/renderer/components/BookTextArea';
-import {createBookState} from "../reducers/bookReducer.spec";
+import {createBookState} from "../utils/testUtils";
 
 describe('<BookTextArea/>', () => {
     it('renders to "No book chosen yet" when no book loaded yet', () => {
