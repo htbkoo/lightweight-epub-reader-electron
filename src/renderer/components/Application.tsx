@@ -7,7 +7,7 @@ import BookmarkBarContainer from "../containers/BookmarkBarContainer";
 
 const styles = {
     "body": {"backgroundColor": "#111", "color": "aliceblue", "height": "100%", overflowY: "hidden" as any},
-    "padding": {"padding": "1%", height: "100%", boxSizing: "border-box" as any},
+    "padding": {"padding": "1%", height: "100%", boxSizing: "border-box" as any}, // reference: https://stackoverflow.com/a/41663710
     "container": {"display": "flex" as any, "flexDirection": "column" as any, "height": "100%"},
     "ebook_content": {}
 };
