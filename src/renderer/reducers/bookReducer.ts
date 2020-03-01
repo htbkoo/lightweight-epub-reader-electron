@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import {Book} from "epub-chinese-converter";
-import {createReducer} from "typesafe-actions";
+import {createReducer, StateType} from "typesafe-actions";
 
 import {notifyLoadingBook, setBookContent} from '../actions/bookActions';
+
+export type BookState = StateType<typeof bookReducer>;
 
 const defaultState = {
     isLoadingBook: false,

@@ -1,15 +1,16 @@
 import * as React from 'react';
-import {Book} from "epub-chinese-converter";
+
+import {BookState} from "../reducers/bookReducer";
 
 export interface Props {
-    book?: Book.BookWithMeta
+    book: BookState
 }
 
 const BookTextArea = ({book}: Props) => {
     console.log(`at BookTextArea, book: ${book}`);
 
-    if (book) {
-        const chapters = book.chapters;
+    if (book.bookWithMeta) {
+        const chapters = book.bookWithMeta.chapters;
         return (
             <div>
                 {Object.keys(chapters).map(chapterId => (
@@ -18,9 +19,15 @@ const BookTextArea = ({book}: Props) => {
             </div>
         );
     } else {
-        return (
-            <div>No book chosen yet</div>
-        );
+        if (book.isLoadingBook){
+            return (
+                <div>Loading...</div>
+            );
+        }else{
+            return (
+                <div>No book chosen yet</div>
+            );
+        }
     }
 };
 
