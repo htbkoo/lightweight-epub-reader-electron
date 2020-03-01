@@ -29,7 +29,7 @@ function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: strin
     return (
         <>
             <label htmlFor="file-path-input">Epub file:</label>
-            <input type="file" id="file-path-input" accept=".epub" onClick={handleFileButtonClick}/>
+            <input type="file" id="file-path-input" onClick={handleFileButtonClick}/>
             <p className="help-block">Please choose an epub file.</p>
         </>
     );
@@ -37,7 +37,7 @@ function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: strin
     function handleFileButtonClick(evt) {
         evt.preventDefault();
 
-        getElectronDialog().showOpenDialog({properties: ['openFile',]})
+        getElectronDialog().showOpenDialog({properties: ['openFile',], filters: [{name: "epub", extensions: ['epub']}]})
             .then(({canceled, filePaths}) => {
                 if (!canceled && filePaths) {
                     console.log(`opened: ${JSON.stringify(filePaths)}`);
