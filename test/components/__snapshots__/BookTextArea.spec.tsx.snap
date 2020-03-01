@@ -14,6 +14,7 @@ exports[`<BookTextArea/> renders book content correctly when book loaded 1`] = `
         "__html": "this is chapter 1",
       }
     }
+    id="ch1"
   />
   <div
     dangerouslySetInnerHTML={
@@ -21,32 +22,8 @@ exports[`<BookTextArea/> renders book content correctly when book loaded 1`] = `
         "__html": "this is chapter 2",
       }
     }
+    id="ch2"
   />
-</div>
-`;
-
-exports[`<BookTextArea/> renders correctly when book loaded 1`] = `
-<div>
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "this is chapter 1",
-      }
-    }
-  />
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "this is chapter 2",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`<BookTextArea/> renders to "No book chosen yet" when book not loaded correctly 1`] = `
-<div>
-  No book chosen yet
 </div>
 `;
 
