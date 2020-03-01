@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadBookPanel/> renders correctly 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="form-group"
+  >
+    <button
+      onClick={[Function]}
+    >
+      To Traditional Chinese
+    </button>
+    <label
+      htmlFor="file-path-input"
+    >
+      Epub file:
+    </label>
+    <input
+      id="file-path-input"
+      onClick={[Function]}
+      type="file"
+    />
+    <p
+      className="help-block"
+    >
+      Please choose an epub file.
+    </p>
+  </div>
+</form>
+`;
+
+exports[`<LoadBookPanel/> renders when isLoadingBook 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="form-group"
+  >
+    <button
+      onClick={[Function]}
+    >
+      To Traditional Chinese
+    </button>
+    <label
+      htmlFor="file-path-input"
+    >
+      Epub file:
+    </label>
+    <input
+      id="file-path-input"
+      onClick={[Function]}
+      type="file"
+    />
+    <p
+      className="help-block"
+    >
+      
+    </p>
+  </div>
+</form>
+`;
+
+exports[`<LoadBookPanel/> renders with both fileName and book metadata available 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="form-group"
+  >
+    <button
+      onClick={[Function]}
+    >
+      To Traditional Chinese
+    </button>
+    <label
+      htmlFor="file-path-input"
+    >
+      Epub file:
+    </label>
+    <input
+      id="file-path-input"
+      onClick={[Function]}
+      type="file"
+    />
+    <p
+      className="help-block"
+    >
+      title - creator - someFileName
+    </p>
+  </div>
+</form>
+`;
+
+exports[`<LoadBookPanel/> renders with only book metadata available 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="form-group"
+  >
+    <button
+      onClick={[Function]}
+    >
+      To Traditional Chinese
+    </button>
+    <label
+      htmlFor="file-path-input"
+    >
+      Epub file:
+    </label>
+    <input
+      id="file-path-input"
+      onClick={[Function]}
+      type="file"
+    />
+    <p
+      className="help-block"
+    >
+      title - creator
+    </p>
+  </div>
+</form>
+`;
+
+exports[`<LoadBookPanel/> renders with only fileName available 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="form-group"
+  >
+    <button
+      onClick={[Function]}
+    >
+      To Traditional Chinese
+    </button>
+    <label
+      htmlFor="file-path-input"
+    >
+      Epub file:
+    </label>
+    <input
+      id="file-path-input"
+      onClick={[Function]}
+      type="file"
+    />
+    <p
+      className="help-block"
+    >
+      someFileName
+    </p>
+  </div>
+</form>
+`;

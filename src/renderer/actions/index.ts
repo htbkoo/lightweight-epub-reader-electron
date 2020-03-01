@@ -1,3 +1,5 @@
-import { CounterAction } from './counterActions';
+import * as bookActions from './bookActions';
 
-export type RootActions = CounterAction[keyof CounterAction];
+export default {
+    bookActions
+}

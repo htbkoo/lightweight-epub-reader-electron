@@ -1,11 +1,10 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
+import {StateType} from "typesafe-actions";
 
-import { CounterState, counterReducer } from './counterReducer';
+import {bookReducer} from "./bookReducer";
 
-export interface RootState {
-    counter: CounterState;
-}
+export type RootState = StateType<typeof rootReducer>;
 
-export const rootReducer = combineReducers<RootState | undefined>({
-    counter: counterReducer
+export const rootReducer = combineReducers({
+    book: bookReducer
 });

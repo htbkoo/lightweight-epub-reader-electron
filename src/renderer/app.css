@@ -3,6 +3,10 @@ html, body {
   margin: 0;
 }
 
+body > div {
+  height: 100%;
+}
+
 html {
   -webkit-app-region: drag;
 }

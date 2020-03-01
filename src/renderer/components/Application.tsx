@@ -1,64 +1,38 @@
 import {hot} from 'react-hot-loader/root';
 import * as React from 'react';
-import {readEpub} from "epub-chinese-converter";
-import {Book} from "epub-chinese-converter/dist/typings";
 
-import BookTextArea from "./BookTextArea";
-import {getElectronDialog} from "../helpers/helpers";
-
-function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: string) => void }) {
-    return (
-        <>
-            <label htmlFor="file-path-input">Epub file:</label>
-            <input type="file" id="file-path-input" accept=".epub" onClick={handleFileButtonClick}/>
-            <p className="help-block">Please choose an epub file.</p>
-        </>
-    );
-
-    function handleFileButtonClick(evt) {
-        evt.preventDefault();
-
-        getElectronDialog().showOpenDialog({properties: ['openFile',]})
-            .then(({canceled, filePaths}) => {
-                if (!canceled && filePaths) {
-                    console.log(`opened: ${JSON.stringify(filePaths)}`);
-                    return onFilePathChange(filePaths[0]);
-                }
-            });
-    }
-}
+import LoadBookPanelContainer from "../containers/LoadBookPanelContainer";
+import BookTextAreaContainer from "../containers/BookTextAreaContainer";
+import BookmarkBarContainer from "../containers/BookmarkBarContainer";
 
 const styles = {
-    "container": {"backgroundColor": "#111", "color": "aliceblue", "min-height": "100%", "overflow-y": "hidden"},
-    "body": {"padding": "25px"},
+    "body": {"backgroundColor": "#111", "color": "aliceblue", "height": "100%", overflowY: "hidden" as any},
+    "padding": {"padding": "1%", height: "100%", boxSizing: "border-box" as any}, // reference: https://stackoverflow.com/a/41663710
+    "container": {"display": "flex" as any, "flexDirection": "column" as any, "height": "100%"},
     "ebook_content": {}
 };
 
 const Application = () => {
-    const [book, setBook] = React.useState<Book.BookWithMeta | undefined>(undefined);
-
-    const bookTextAreaIfLoaded = book
-        ? (<BookTextArea book={book}/>)
-        : (<div>No book chosen yet</div>);
-
     return (
-        <div id="react-mount" className="container-fluid" style={styles.container}>
-            <div style={styles.body}>
-                <div className="row">
-                    <div className="col-md-12">
-                        <form className="form-horizontal">
-                            <div className="form-group">
-                                <EpubFilePicker onFilePathChange={bookUrl => readEpub(bookUrl).then(setBook)}/>
-                            </div>
-                        </form>
+        <div id="react-mount" className="container-fluid" style={styles.body}>
+            <div style={styles.padding}>
+                <div style={styles.container}>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <LoadBookPanelContainer/>
+                        </div>
                     </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="panel panel-default">
-                            <div className="ebook-content panel-body" style={styles.ebook_content}>
-                                {bookTextAreaIfLoaded}
+                    <div className="row" style={{marginBottom: "1%"}}>
+                        <BookmarkBarContainer/>
+                    </div>
+
+                    <div className="row" style={{height: "100%", overflow: "auto", flexGrow: 1}}>
+                        <div className="col-md-12">
+                            <div className="panel panel-default">
+                                <div className="ebook-content panel-body" style={styles.ebook_content}>
+                                    <BookTextAreaContainer/>
+                                </div>
                             </div>
                         </div>
                     </div>
