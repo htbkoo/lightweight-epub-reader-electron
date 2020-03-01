@@ -7,13 +7,17 @@ exports[`<LoadBookPanel/> renders correctly 1`] = `
   <div
     className="form-group"
   >
+    <button
+      onClick={[Function]}
+    >
+      To Traditional Chinese
+    </button>
     <label
       htmlFor="file-path-input"
     >
       Epub file:
     </label>
     <input
-      accept=".epub"
       id="file-path-input"
       onClick={[Function]}
       type="file"
