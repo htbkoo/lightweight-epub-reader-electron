@@ -5,16 +5,22 @@ import {getElectronDialog} from "../helpers/helpers";
 
 export interface Props {
     setBookContent: (book: Book.BookWithMeta) => any
+    notifyLoadingBook: () => any
 }
 
-const LoadBookPanel = ({setBookContent}: Props) => {
+const LoadBookPanel = ({notifyLoadingBook, setBookContent}: Props) => {
     return (
         <form className="form-horizontal">
             <div className="form-group">
-                <EpubFilePicker onFilePathChange={bookUrl => readEpub(bookUrl).then(setBookContent)}/>
+                <EpubFilePicker onFilePathChange={handleFilePathChange}/>
             </div>
         </form>
-    )
+    );
+
+    function handleFilePathChange(bookUrl: string){
+        notifyLoadingBook();
+        return readEpub(bookUrl).then(setBookContent);
+    }
 };
 
 function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: string) => void }) {

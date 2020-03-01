@@ -1,5 +1,5 @@
 import {bookReducer} from "../../src/renderer/reducers/bookReducer";
-import {setBookContent} from "../../src/renderer/actions/bookActions";
+import {notifyLoadingBook, setBookContent} from "../../src/renderer/actions/bookActions";
 import {Book} from "epub-chinese-converter";
 
 describe('bookReducer', () => {
@@ -17,5 +17,19 @@ describe('bookReducer', () => {
         // then
         expect(newState.isLoadingBook).toEqual(false);
         expect(newState.bookWithMeta).toEqual(bookWithMeta);
+    });
+
+    it('should notifyLoadingBook', () => {
+        // given
+        const prevState = {
+            isLoadingBook: false,
+            bookWithMeta: undefined,
+        };
+
+        // when
+        const newState = bookReducer(prevState, notifyLoadingBook());
+
+        // then
+        expect(newState.isLoadingBook).toEqual(true);
     });
 });
