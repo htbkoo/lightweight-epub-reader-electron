@@ -24,7 +24,7 @@ describe('Main window', () => {
     });
 
     afterEach(() => {
-        if (app.isRunning()) {
+        if (app && app.isRunning()) {
             return app.stop();
         }
     });
