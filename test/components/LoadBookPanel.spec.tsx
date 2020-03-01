@@ -19,6 +19,41 @@ describe('<LoadBookPanel/>', () => {
         expect(tree).toMatchSnapshot();
     });
 
+    it('renders with only fileName available', () => {
+        const tree = renderer
+            .create(createLoadBookPanel({book: createBookState({fileName: "someFileName"})}))
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it('renders with only book metadata available', () => {
+        const tree = renderer
+            .create(createLoadBookPanel({
+                book: createBookState({
+                    bookWithMeta: {
+                        metadata: {creator: "creator", title: "title"},
+                        chapters: {}
+                    }
+                })
+            }))
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it('renders with both fileName and book metadata available', () => {
+        const tree = renderer
+            .create(createLoadBookPanel({
+                book: createBookState({
+                    bookWithMeta: {
+                        metadata: {creator: "creator", title: "title"},
+                        chapters: {}
+                    }, fileName: "someFileName"
+                })
+            }))
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
     function createLoadBookPanel(overrides: Partial<Props> = {}) {
         const props: Props = {
             setFileName: jest.fn(),
