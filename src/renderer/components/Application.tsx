@@ -4,6 +4,7 @@ import {readEpub} from "epub-chinese-converter";
 import {Book} from "epub-chinese-converter/dist/typings";
 
 import BookTextArea from "./BookTextArea";
+import {getElectronDialog} from "../helpers/helpers";
 
 function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: string) => void }) {
     return (
@@ -17,7 +18,7 @@ function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: strin
     function handleFileButtonClick(evt) {
         evt.preventDefault();
 
-        (window as any).electron.dialog.showOpenDialog({properties: ['openFile',]})
+        getElectronDialog().showOpenDialog({properties: ['openFile',]})
             .then(({canceled, filePaths}) => {
                 if (!canceled && filePaths) {
                     console.log(`opened: ${JSON.stringify(filePaths)}`);
