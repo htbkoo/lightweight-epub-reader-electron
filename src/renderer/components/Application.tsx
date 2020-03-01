@@ -28,7 +28,7 @@ function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: strin
 }
 
 const styles = {
-    "container": {"backgroundColor": "#111", "color": "aliceblue", "height": "100%"},
+    "container": {"backgroundColor": "#111", "color": "aliceblue", "min-height": "100%", "overflow-y": "hidden"},
     "body": {"padding": "25px"},
     "ebook_content": {}
 };
