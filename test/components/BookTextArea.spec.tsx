@@ -3,13 +3,13 @@ import * as renderer from 'react-test-renderer';
 import {Book} from "epub-chinese-converter";
 
 import BookTextArea from '../../src/renderer/components/BookTextArea';
-import {BookState} from "../../src/renderer/reducers/bookReducer";
+import {createBookState} from "../reducers/bookReducer.spec";
 
 describe('<BookTextArea/>', () => {
     it('renders to "No book chosen yet" when no book loaded yet', () => {
         // when
         const tree = renderer
-            .create(<BookTextArea book={createState()}/>)
+            .create(<BookTextArea book={createBookState()}/>)
             .toJSON();
 
         // then
@@ -22,7 +22,7 @@ describe('<BookTextArea/>', () => {
 
         // when
         const tree = renderer
-            .create(<BookTextArea book={createState({isLoadingBook})}/>)
+            .create(<BookTextArea book={createBookState({isLoadingBook})}/>)
             .toJSON();
 
         // then
@@ -41,14 +41,10 @@ describe('<BookTextArea/>', () => {
 
         // when
         const tree = renderer
-            .create(<BookTextArea book={createState({bookWithMeta})}/>)
+            .create(<BookTextArea book={createBookState({bookWithMeta})}/>)
             .toJSON();
 
         // then
         expect(tree).toMatchSnapshot();
     });
-
-    function createState(override: Partial<BookState> = {}) {
-        return {isLoadingBook: false, bookWithMeta: null, ...override};
-    }
 });
