@@ -6,7 +6,7 @@ const BookTextArea = ({book}: { book: Book.BookWithMeta }) => {
     return (
         <div>
             {Object.keys(chapters).map(chapterId => (
-                <div>{chapters[chapterId].text}</div>
+                <div key={chapterId}>{chapters[chapterId].text}</div>
             ))}
         </div>
     )
