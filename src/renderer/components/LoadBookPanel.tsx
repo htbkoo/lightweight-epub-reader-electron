@@ -2,35 +2,37 @@ import * as React from 'react';
 import {Book, readEpub} from "epub-chinese-converter";
 
 import {getElectronDialog} from "../helpers/helpers";
+import {BookState} from "../reducers/bookReducer";
 
 interface Props {
+    book: BookState;
     setBookContent: (book: Book.BookWithMeta) => any;
     setFileName: (fileName: string) => any;
     notifyLoadingBook: () => any;
 }
 
-const LoadBookPanel = ({notifyLoadingBook, setFileName, setBookContent}: Props) => {
+const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: Props) => {
     return (
         <form className="form-horizontal">
             <div className="form-group">
-                <EpubFilePicker onFilePathChange={handleFilePathChange}/>
+                <EpubFilePicker onFilePathChange={handleFilePathChange} book={book}/>
             </div>
         </form>
     );
 
-    function handleFilePathChange(bookUrl: string){
+    function handleFilePathChange(bookUrl: string) {
         notifyLoadingBook();
         setFileName(bookUrl);
         return readEpub(bookUrl).then(setBookContent);
     }
 };
 
-function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: string) => void }) {
+function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathChange: (filePath: string) => void }) {
     return (
         <>
             <label htmlFor="file-path-input">Epub file:</label>
             <input type="file" id="file-path-input" onClick={handleFileButtonClick}/>
-            <p className="help-block">Please choose an epub file.</p>
+            <p className="help-block">{getHelpText(book)}</p>
         </>
     );
 
@@ -44,6 +46,30 @@ function EpubFilePicker({onFilePathChange}: { onFilePathChange: (filePath: strin
                     return onFilePathChange(filePaths[0]);
                 }
             });
+    }
+}
+
+function getHelpText(book: BookState) {
+    if (book.isLoadingBook) {
+        return ``;
+    } else if (book.bookWithMeta || book.fileName) {
+        const array = [];
+
+        // TODO: migrate to something like safe get
+        if (book.bookWithMeta && book.bookWithMeta.metadata) {
+            if ('title' in book.bookWithMeta.metadata) {
+                array.push(book.bookWithMeta.metadata.title);
+            }
+            if ('creator' in book.bookWithMeta.metadata) {
+                array.push(book.bookWithMeta.metadata.creator);
+            }
+        }
+        if (book.fileName) {
+            array.push(book.fileName);
+        }
+        return array.join(' - ');
+    } else {
+        return `Please choose an epub file.`;
     }
 }
 

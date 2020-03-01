@@ -6,8 +6,8 @@ import {notifyLoadingBook, setBookContent, setBookFileName} from '../actions/boo
 import LoadBookPanel from "../components/LoadBookPanel";
 import {RootAction} from "../types";
 
-const mapStateToProps = (state: RootState) => ({
-    book: state.book.bookWithMeta
+const mapStateToProps = ({book}: RootState) => ({
+    book
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => ({
