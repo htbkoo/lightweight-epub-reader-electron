@@ -3,7 +3,7 @@ import {setBookContent} from "../../src/renderer/actions/bookActions";
 import {Book} from "epub-chinese-converter";
 
 describe('bookReducer', () => {
-    it('renders correctly', () => {
+    it('should setBookContent', () => {
         // given
         const bookWithMeta: Book.BookWithMeta = {metadata: {}, chapters: {}};
         const action = setBookContent(bookWithMeta);
