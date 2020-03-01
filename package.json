@@ -14,6 +14,9 @@
     "start-dev": "cross-env START_HOT=1 npm run start-renderer-dev",
     "prestart": "npm run build",
     "start": "electron .",
+    "test": "jest '(\\/test\\/(?!e2e/)).*'",
+    "pretest:e2e": "npm run build",
+    "test:e2e": "jest '(\\/test\\/e2e/).*'",
     "dep:clean": "rimraf node_modules",
     "dep:install-no-optional": "npm i --no-optional",
     "dist": "npm run dep:clean --silent || npm run dep:install-no-optional && npm run build && electron-builder"
