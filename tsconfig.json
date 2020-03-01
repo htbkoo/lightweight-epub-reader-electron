@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "jsx": "react",
     "noImplicitAny": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -14,6 +15,8 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*",
+    "mocks/**/*"
   ]
 }

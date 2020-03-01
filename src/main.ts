@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
 import isDev from "electron-is-dev";
+import * as url from "url";
 
 let mainWindow: Electron.BrowserWindow;
 
@@ -15,6 +16,20 @@ function createWindow() {
     },
     width: 800,
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'; // eslint-disable-line require-atomic-updates
+    mainWindow.loadURL(`http://localhost:2003`);
+    // win.loadURL(`http://localhost:2003`, {postData: [book]});
+  } else {
+    mainWindow.loadURL(
+        url.format({
+          pathname: path.join(__dirname, 'index.html'),
+          protocol: 'file:',
+          slashes: true
+        })
+    );
+  }
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "../public/index.html"));
