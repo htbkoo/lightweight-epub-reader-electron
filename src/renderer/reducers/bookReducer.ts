@@ -11,9 +11,9 @@ const defaultState: BookState = {
     bookWithMeta: undefined
 };
 
-export const bookReducer: Reducer<BookState> = (
+export const bookReducer: Reducer<BookState, BookAction> = (
     state = defaultState,
-    action: BookAction
+    action
 ) => {
     switch (action.type) {
         case SET_BOOK_CONTENT:
