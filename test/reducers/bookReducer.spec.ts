@@ -6,14 +6,13 @@ describe('bookReducer', () => {
     it('should setBookContent', () => {
         // given
         const bookWithMeta: Book.BookWithMeta = {metadata: {}, chapters: {}};
-        const action = setBookContent(bookWithMeta);
         const prevState = {
             isLoadingBook: false,
             bookWithMeta: undefined,
         };
 
         // when
-        const newState = bookReducer(prevState, action);
+        const newState = bookReducer(prevState, setBookContent(bookWithMeta));
 
         // then
         expect(newState.bookWithMeta).toEqual(bookWithMeta);
