@@ -12,7 +12,12 @@ describe('Main window', () => {
     beforeEach(() => {
         app = new Application({
             path: electronPath.toString(),
-            args: [path.join(__dirname, '..', '..')]
+            args: [path.join(__dirname, '..', '..')],
+            env: {
+                NODE_ENV: "production"
+                // forcing to `production` mode to disable devtool to fix the test
+                // reference: https://github.com/electron-userland/spectron/issues/174#issuecomment-319242097
+            }
         });
 
         return app.start();
