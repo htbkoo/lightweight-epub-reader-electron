@@ -4,13 +4,13 @@ import {Dispatch} from 'redux';
 import {RootState} from '../reducers';
 import {setBookContent} from '../actions/bookActions';
 import LoadBookPanel from "../components/LoadBookPanel";
-import {ActionType} from "typesafe-actions";
+import {RootAction} from "../types";
 
 const mapStateToProps = (state: RootState) => ({
     book: state.book.bookWithMeta
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<ActionType<typeof setBookContent>>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => ({
     setBookContent: book => dispatch(setBookContent(book)),
 });
 

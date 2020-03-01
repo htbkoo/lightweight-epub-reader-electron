@@ -1,11 +1,9 @@
-import { combineReducers } from 'redux';
-import {createReducer} from "typesafe-actions";
+import {combineReducers} from 'redux';
+import {StateType} from "typesafe-actions";
 
-import {bookReducer, BookState} from "./bookReducer";
+import {bookReducer} from "./bookReducer";
 
-export interface RootState {
-    book: BookState;
-}
+export type RootState = StateType<typeof rootReducer>;
 
 export const rootReducer = combineReducers({
     book: bookReducer

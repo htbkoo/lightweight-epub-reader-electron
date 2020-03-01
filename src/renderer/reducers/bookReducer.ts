@@ -4,16 +4,13 @@ import {createReducer} from "typesafe-actions";
 
 import {setBookContent} from '../actions/bookActions';
 
-export interface BookState {
-    readonly bookWithMeta?: Book.BookWithMeta;
-}
-
 const defaultState = {
-    bookWithMeta: null
+    isLoadingBook: false,
+    bookWithMeta: null,
 };
 
 export const bookReducer = combineReducers({
-    isLoadingBook: createReducer(false),
+    isLoadingBook: createReducer(defaultState.isLoadingBook),
     bookWithMeta: createReducer<Book.BookWithMeta>(defaultState.bookWithMeta)
         .handleAction([setBookContent], (state, action) => action.payload)
 });
