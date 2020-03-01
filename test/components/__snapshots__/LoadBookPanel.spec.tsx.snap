@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadBookPanel/> renders correctly 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="file-path-input"
+    >
+      Epub file:
+    </label>
+    <input
+      accept=".epub"
+      id="file-path-input"
+      onClick={[Function]}
+      type="file"
+    />
+    <p
+      className="help-block"
+    >
+      Please choose an epub file.
+    </p>
+  </div>
+</form>
+`;

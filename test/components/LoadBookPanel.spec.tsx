@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import Counter from '../../src/renderer/components/Counter';
+import LoadBookPanel from '../../src/renderer/components/LoadBookPanel';
 
-describe('Counter component', () => {
+describe('<LoadBookPanel/>', () => {
     it('renders correctly', () => {
         const tree = renderer
-            .create(<Counter value={1} incrementValue={jest.fn()} decrementValue={jest.fn()} />)
+            .create(<LoadBookPanel loadBook={jest.fn()}/>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
