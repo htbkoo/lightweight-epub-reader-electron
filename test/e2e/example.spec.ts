@@ -29,6 +29,13 @@ describe('Main window', () => {
         }
     });
 
+    it('shows an initial window', async () => {
+        const count = await app.client.getWindowCount();
+        expect(count).toEqual(1);
+        // Please note that getWindowCount() will return 2 if `dev tools` are opened.
+        // assert.equal(count, 2)
+    });
+
     it('opens the window', async () => {
         const { client, browserWindow } = app;
 
