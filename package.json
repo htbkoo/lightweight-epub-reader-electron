@@ -12,14 +12,17 @@
     "start-main-dev": "npm run build-main && electron ./dist/main/main.js",
     "start-renderer-dev": "webpack-dev-server --config webpack.renderer.dev.config.js",
     "start-dev": "cross-env START_HOT=1 npm run start-renderer-dev",
-    "prestart": "npm run build",
-    "start": "electron .",
+    "start": "npm run start-dev",
+    "start-prod-local": "npm run build && cross-env NODE_ENV=production electron .",
     "test": "jest --config jest-unit.config.js",
     "pretest:e2e": "npm run build",
     "test:e2e": "jest --config test/e2e/jest-e2e.config.js",
     "dep:clean": "rimraf node_modules",
     "dep:install-no-optional": "npm i --no-optional",
-    "dist": "npm run dep:clean --silent || npm run dep:install-no-optional && npm run build && electron-builder"
+    "clean:dist": "rimraf dist",
+    "clean:release": "rimraf release",
+    "clean": "npm run clean:dist && npm run clean:release",
+    "dist": "npm run dep:clean --silent || npm run dep:install-no-optional && npm run clean && npm run build && cross-env NODE_ENV=production electron-builder"
   },
   "repository": "https://github.com/htbkoo/lightweight-epub-reader-electron",
   "keywords": [
