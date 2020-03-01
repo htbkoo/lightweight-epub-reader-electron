@@ -17,29 +17,30 @@ function createWindow() {
     width: 800,
   });
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production' && isDev) {
+    // Open the DevTools.
+    console.log('Running in development');
+
+    mainWindow.webContents.openDevTools();
+
     process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'; // eslint-disable-line require-atomic-updates
     mainWindow.loadURL(`http://localhost:2003`);
     // win.loadURL(`http://localhost:2003`, {postData: [book]});
   } else {
-    mainWindow.loadURL(
-        url.format({
-          pathname: path.join(__dirname, "../index.html"),
-          protocol: 'file:',
-          slashes: true
-        })
-    );
-  }
-
-  // and load the index.html of the app.
-  // mainWindow.loadFile(path.join(__dirname, "../../public/index.html"));
-
-  if (isDev) {
-    // Open the DevTools.
-    console.log('Running in development');
-    mainWindow.webContents.openDevTools();
-  } else {
     console.log('Running in production');
+
+    const indexHtmlFilePath = path.join(__dirname, "../index.html");
+    console.log(`loading index.html from ${indexHtmlFilePath}`);
+    mainWindow.loadFile(indexHtmlFilePath);
+
+    // mainWindow.loadFile(path.join(__dirname, "../../public/index.html"));
+    // mainWindow.loadURL(
+    //     url.format({
+    //       pathname: path.join(__dirname, "../index.html"),
+    //       protocol: 'file:',
+    //       slashes: true
+    //     })
+    // );
   }
 
   // Emitted when the window is closed.
