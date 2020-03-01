@@ -3,7 +3,7 @@ import {Book, readEpub} from "epub-chinese-converter";
 
 import {getElectronDialog} from "../helpers/helpers";
 
-export interface Props {
+interface Props {
     setBookContent: (book: Book.BookWithMeta) => any
     notifyLoadingBook: () => any
 }

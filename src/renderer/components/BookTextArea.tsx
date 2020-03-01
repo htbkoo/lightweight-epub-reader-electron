@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {BookState} from "../reducers/bookReducer";
 
-export interface Props {
+interface Props {
     book: BookState
 }
 
