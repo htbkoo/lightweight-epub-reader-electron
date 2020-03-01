@@ -7,9 +7,7 @@ import Application from './components/Application';
 import store from './store';
 import "./app.css";
 
-// Create main element
-const mainElement = document.createElement('div');
-document.body.appendChild(mainElement);
+const reactMountContainer = document.body;
 
 // Render components
 const render = (Component: () => JSX.Element) => {
@@ -19,7 +17,7 @@ const render = (Component: () => JSX.Element) => {
                 <Component />
             </Provider>
         </AppContainer>,
-        mainElement
+        reactMountContainer
     );
 };
 
