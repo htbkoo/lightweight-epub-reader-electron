@@ -17,18 +17,18 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
     return (
         <form className="form-horizontal">
             <div className="form-group">
-                <button onClick={e => {
-                    e.preventDefault();
-                    if (book.bookWithMeta){
-                        setBookContent(converter.convertBook(book.bookWithMeta))
-                    }
-                }}>
-                    To Traditional Chinese
-                </button>
-                <EpubFilePicker onFilePathChange={handleFilePathChange} book={book}/>
+                <button onClick={handleTranslateButtonClick}>To Traditional Chinese</button>
+                <EpubFilePicker onFilePathChange={handleFilePathChange} book={book} />
             </div>
         </form>
     );
+
+    function handleTranslateButtonClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+        e.preventDefault();
+        if (book.bookWithMeta){
+            setBookContent(converter.convertBook(book.bookWithMeta))
+        }
+    }
 
     function handleFilePathChange(bookUrl: string) {
         notifyLoadingBook();
