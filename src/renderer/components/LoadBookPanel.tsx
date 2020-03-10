@@ -3,6 +3,7 @@ import {Book, createSimplifiedToTraditionalConverter, readEpub} from "epub-chine
 
 import {getElectronDialog} from "../helpers/helpers";
 import {BookState} from "../reducers/bookReducer";
+import { ButtonMouseEvent } from '../types';
 
 const converter = createSimplifiedToTraditionalConverter();
 
@@ -23,7 +24,7 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
         </form>
     );
 
-    function handleTranslateButtonClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+    function handleTranslateButtonClick(e: ButtonMouseEvent){
         e.preventDefault();
         if (book.bookWithMeta){
             setBookContent(converter.convertBook(book.bookWithMeta))
@@ -46,7 +47,7 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
         </>
     );
 
-    function handleFileButtonClick(evt) {
+    function handleFileButtonClick(evt: ButtonMouseEvent) {
         evt.preventDefault();
 
         getElectronDialog().showOpenDialog({properties: ['openFile',], filters: [{name: "epub", extensions: ['epub']}]})
