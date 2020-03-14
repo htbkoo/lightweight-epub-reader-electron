@@ -62,7 +62,10 @@ module.exports = merge.smart(baseConfig, {
             reportFiles: ['src/renderer/**/*']
         }),
         new webpack.NamedModulesPlugin(),
-        new HtmlWebpackPlugin({title: APP_TITLE}),
+        new HtmlWebpackPlugin({
+            title: APP_TITLE,
+            template: 'src/renderer/index.ejs'
+        }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         })
