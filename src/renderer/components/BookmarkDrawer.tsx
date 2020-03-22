@@ -1,37 +1,32 @@
-import {hot} from 'react-hot-loader/root';
 import * as React from 'react';
-import clsx from 'clsx';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Slide from '@material-ui/core/Slide';
+import Box from "@material-ui/core/Box";
 
-import LoadBookPanelContainer from "../containers/LoadBookPanelContainer";
-import BookTextAreaContainer from "../containers/BookTextAreaContainer";
 import BookmarkBarContainer from "../containers/BookmarkBarContainer";
+import {AppState} from "../reducers/appReducer";
 
-const drawerWidth = 240;
+interface Props {
+    app: AppState;
+    setDrawerOpen: (open: boolean) => any;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         fullList: {
             width: 'auto',
+            // backgroundColor: "#000",
+            backgroundColor: theme.palette.primary.dark,
+            padding: theme.spacing(1),
         },
     }),
 );
 
-function BookmarkDrawer() {
+function BookmarkDrawer({app, setDrawerOpen}: Props) {
     const anchor = 'top';
 
     const classes = useStyles();
-    const [isDrawerOpen, setDrawerOpen] = React.useState(false);
 
     const toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent,
@@ -48,12 +43,11 @@ function BookmarkDrawer() {
     };
 
     return (
-        <div>
-            <Button onClick={toggleDrawer(true)}>{anchor}</Button>
-            <Drawer anchor={anchor} open={isDrawerOpen} onClose={toggleDrawer(false)}>
+        <Box m={1}>
+            <Drawer anchor={anchor} open={app.isBookmarkDrawerOpen} onClose={toggleDrawer(false)}>
                 <DrawerContent/>
             </Drawer>
-        </div>
+        </Box>
     );
 
     function DrawerContent() {

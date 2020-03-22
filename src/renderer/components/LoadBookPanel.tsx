@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {getElectronDialog} from "../helpers/helpers";
 import {BookState} from "../reducers/bookReducer";
 import {ButtonMouseEvent} from '../types';
+import {AppState} from "../reducers/appReducer";
 
 const converter = createSimplifiedToTraditionalConverter();
 
@@ -37,13 +38,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export interface Props {
+    app: AppState;
     book: BookState;
     setBookContent: (book: Book.BookWithMeta) => any;
     setFileName: (fileName: string) => any;
     notifyLoadingBook: () => any;
+    setDrawerOpen: (open: boolean) => any;
 }
 
-const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: Props) => {
+const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookContent, setDrawerOpen}: Props) => {
     const classes = useStyles();
     return (
         <div className={clsx(classes.root, "form-group")}>
@@ -51,7 +54,13 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
             <form className="form-horizontal">
                 <div className={classes.container}>
                     <div className={classes.inline}>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="menu"
+                            onClick={handleMenuButtonClick}
+                        >
                             <MenuIcon/>
                         </IconButton>
                     </div>
@@ -69,6 +78,16 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
             </form>
         </div>
     );
+
+    function handleMenuButtonClick(e: ButtonMouseEvent) {
+        e.preventDefault();
+
+        // TODO: move this to redux store / selector to keep the state properly
+        const isBookLoaded = book.bookWithMeta;
+
+        const shouldOpenBookmarkDrawer = isBookLoaded && !app.isBookmarkDrawerOpen;
+        return setDrawerOpen(shouldOpenBookmarkDrawer);
+    }
 
     function handleTranslateButtonClick(e: ButtonMouseEvent) {
         e.preventDefault();

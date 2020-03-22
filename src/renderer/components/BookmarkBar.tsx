@@ -15,9 +15,9 @@ const BookmarkBar = ({book}: Props) => {
         return (
             <div style={{wordBreak: "break-word"}}>
                 {Object.keys(chapters).map(chapterId => (
-                    <span key={chapterId} style={{margin: "5px"}}>
+                    <div key={chapterId} style={{margin: "5px"}}>
                         <a style={{color: "aliceblue"}} href={`#${chapterId}`}>{getLinkText(chapters, chapterId)}</a>
-                    </span>
+                    </div>
                 ))}
             </div>
         );

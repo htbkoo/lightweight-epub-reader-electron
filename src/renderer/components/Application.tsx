@@ -12,6 +12,7 @@ import Slide from '@material-ui/core/Slide';
 
 import LoadBookPanelContainer from "../containers/LoadBookPanelContainer";
 import BookTextAreaContainer from "../containers/BookTextAreaContainer";
+import BookmarkDrawerContainer from "../containers/BookmarkDrawerContainer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,6 +39,8 @@ function Application() {
     return (
         <div className={clsx(classes.body)}>
             <CssBaseline/>
+            <BookmarkDrawerContainer/>
+
             <HideOnScroll>
                 <div>
                     <AppBar>
