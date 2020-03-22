@@ -13,8 +13,6 @@ import Slide from '@material-ui/core/Slide';
 import LoadBookPanelContainer from "../containers/LoadBookPanelContainer";
 import BookTextAreaContainer from "../containers/BookTextAreaContainer";
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         "body": {backgroundColor: "#111", "color": "aliceblue", "minHeight": "100%"},
