@@ -1,6 +1,6 @@
 {
   "name": "lightweight-epub-reader-electron",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": " A lightweight epub-reader desktop app created with electron",
   "main": "./dist/main/main.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "start": "npm run start-dev",
     "start-prod-local": "npm run build && cross-env NODE_ENV=production electron .",
     "test": "jest --config jest-unit.config.js",
+    "test:watch": "jest --watch --config jest-unit.config.js",
     "pretest:e2e": "npm run build",
     "test:e2e": "jest --config test/e2e/jest-e2e.config.js",
     "dep:clean": "rimraf node_modules",
@@ -52,7 +53,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.9",
     "@types/react-test-renderer": "^16.8.1",
-    "@types/webdriverio": "^5.0.0",
+    "@types/webdriverio": "4.8.x",
     "@types/webpack-env": "^1.13.3",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
@@ -83,6 +84,8 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "@material-ui/icons": "^4.9.1",
     "dompurify": "^2.0.8",
     "electron-is-dev": "^1.1.0",
     "epub-chinese-converter": "0.1.6",

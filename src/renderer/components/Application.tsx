@@ -1,45 +1,69 @@
 import {hot} from 'react-hot-loader/root';
 import * as React from 'react';
+import clsx from 'clsx';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Slide from '@material-ui/core/Slide';
 
 import LoadBookPanelContainer from "../containers/LoadBookPanelContainer";
 import BookTextAreaContainer from "../containers/BookTextAreaContainer";
-import BookmarkBarContainer from "../containers/BookmarkBarContainer";
+import BookmarkDrawerContainer from "../containers/BookmarkDrawerContainer";
 
-const styles = {
-    "body": {"backgroundColor": "#111", "color": "aliceblue", "height": "100%", overflowY: "hidden" as any},
-    "padding": {"padding": "1%", height: "100%", boxSizing: "border-box" as any}, // reference: https://stackoverflow.com/a/41663710
-    "container": {"display": "flex" as any, "flexDirection": "column" as any, "height": "100%"},
-    "ebook_content": {}
-};
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        "body": {
+            backgroundColor: theme.palette.primary.dark,
+            color: theme.palette.primary.contrastText,
+            minHeight: "100%",
+        },
+        "padding": {"padding": "1%", height: "100%", boxSizing: "border-box"}, // reference: https://stackoverflow.com/a/41663710
+    }),
+);
 
-const Application = () => {
+function HideOnScroll({children}: { children: React.ReactElement; }) {
+    const trigger = useScrollTrigger();
+
     return (
-        <div id="react-mount" className="container-fluid" style={styles.body}>
-            <div style={styles.padding}>
-                <div style={styles.container}>
-                    <div className="row">
-                        <div className="col-md-12">
+        <Slide appear={false} direction="down" in={!trigger}>
+            {children}
+        </Slide>
+    );
+}
+
+function Application() {
+    const classes = useStyles();
+
+    const trigger = useScrollTrigger();
+
+    return (
+        <div className={clsx(classes.body)}>
+            <CssBaseline/>
+            <BookmarkDrawerContainer/>
+
+            <HideOnScroll>
+                <div>
+                    <AppBar>
+                        <Toolbar>
                             <LoadBookPanelContainer/>
-                        </div>
-                    </div>
-
-                    <div className="row" style={{marginBottom: "1%"}}>
-                        <BookmarkBarContainer/>
-                    </div>
-
-                    <div className="row" style={{height: "100%", overflow: "auto", flexGrow: 1}}>
-                        <div className="col-md-12">
-                            <div className="panel panel-default">
-                                <div className="ebook-content panel-body" style={styles.ebook_content}>
-                                    <BookTextAreaContainer/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </Toolbar>
+                    </AppBar>
                 </div>
-            </div>
+            </HideOnScroll>
+
+            <Toolbar/>
+
+            <Container>
+                <Box py={2}>
+                    <BookTextAreaContainer/>
+                </Box>
+            </Container>
         </div>
-    )
-};
+    );
+}
 
 export default hot(Application);

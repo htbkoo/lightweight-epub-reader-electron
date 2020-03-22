@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
 
 import {BookState} from "../reducers/bookReducer";
 
@@ -15,9 +16,11 @@ const BookmarkBar = ({book}: Props) => {
         return (
             <div style={{wordBreak: "break-word"}}>
                 {Object.keys(chapters).map(chapterId => (
-                    <span key={chapterId} style={{margin: "5px"}}>
-                        <a style={{color: "aliceblue"}} href={`#${chapterId}`}>{getLinkText(chapters, chapterId)}</a>
-                    </span>
+                    <div>
+                        <Button key={chapterId} color="secondary" href={`#${chapterId}`}>
+                            {getLinkText(chapters, chapterId)}
+                        </Button>
+                    </div>
                 ))}
             </div>
         );

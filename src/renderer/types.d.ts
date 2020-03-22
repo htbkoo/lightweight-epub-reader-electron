@@ -7,3 +7,5 @@ declare module 'typesafe-actions' {
         RootAction: RootAction;
     }
 }
+
+export type ButtonMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
