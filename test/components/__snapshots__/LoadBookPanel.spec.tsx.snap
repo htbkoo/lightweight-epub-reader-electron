@@ -63,7 +63,7 @@ exports[`<LoadBookPanel/> renders correctly 1`] = `
         >
           <span
             aria-disabled={false}
-            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
             onBlur={[Function]}
             onDragLeave={[Function]}
             onFocus={[Function]}
@@ -90,7 +90,7 @@ exports[`<LoadBookPanel/> renders correctly 1`] = `
         className="makeStyles-inline-6"
       >
         <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -166,9 +166,6 @@ exports[`<LoadBookPanel/> renders when isLoadingBook 1`] = `
               />
             </svg>
           </span>
-          <span
-            className="MuiTouchRipple-root"
-          />
         </button>
       </div>
       <div
@@ -185,7 +182,7 @@ exports[`<LoadBookPanel/> renders when isLoadingBook 1`] = `
         >
           <span
             aria-disabled={false}
-            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
             onBlur={[Function]}
             onDragLeave={[Function]}
             onFocus={[Function]}
@@ -205,9 +202,6 @@ exports[`<LoadBookPanel/> renders when isLoadingBook 1`] = `
             >
               Loading
             </span>
-            <span
-              className="MuiTouchRipple-root"
-            />
           </span>
         </label>
       </div>
@@ -215,7 +209,7 @@ exports[`<LoadBookPanel/> renders when isLoadingBook 1`] = `
         className="makeStyles-inline-6"
       >
         <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -237,9 +231,6 @@ exports[`<LoadBookPanel/> renders when isLoadingBook 1`] = `
           >
             To Traditional Chinese
           </span>
-          <span
-            className="MuiTouchRipple-root"
-          />
         </button>
       </div>
     </div>
@@ -548,7 +539,7 @@ exports[`<LoadBookPanel/> renders with only fileName available 1`] = `
         >
           <span
             aria-disabled={false}
-            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
             onBlur={[Function]}
             onDragLeave={[Function]}
             onFocus={[Function]}
@@ -575,7 +566,7 @@ exports[`<LoadBookPanel/> renders with only fileName available 1`] = `
         className="makeStyles-inline-6"
       >
         <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}

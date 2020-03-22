@@ -70,7 +70,7 @@ const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookConten
                     </div>
 
                     <div className={classes.inline}>
-                        <Button variant="contained" onClick={handleTranslateButtonClick} size="small">
+                        <Button variant="contained" onClick={handleTranslateButtonClick} size="small" color="secondary">
                             To Traditional Chinese
                         </Button>
                     </div>
@@ -110,7 +110,7 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
         <>
             <input className={classes.input} type="file" id="file-path-input" onClick={handleFileButtonClick}/>
             <label htmlFor="file-path-input">
-                <Button variant="contained" component="span" size="small">
+                <Button variant="contained" component="span" size="small" color="secondary">
                     {getLoadButtonText(book)}
                 </Button>
             </label>

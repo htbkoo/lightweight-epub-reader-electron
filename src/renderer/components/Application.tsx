@@ -16,7 +16,11 @@ import BookmarkDrawerContainer from "../containers/BookmarkDrawerContainer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        "body": {backgroundColor: "#111", "color": "aliceblue", "minHeight": "100%"},
+        "body": {
+            backgroundColor: theme.palette.primary.dark,
+            color: theme.palette.primary.contrastText,
+            minHeight: "100%",
+        },
         "padding": {"padding": "1%", height: "100%", boxSizing: "border-box"}, // reference: https://stackoverflow.com/a/41663710
     }),
 );

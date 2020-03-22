@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         fullList: {
             width: 'auto',
-            // backgroundColor: "#000",
             backgroundColor: theme.palette.primary.dark,
             padding: theme.spacing(1),
         },
