@@ -46,13 +46,11 @@ function Application() {
             <BookmarkDrawerContainer/>
 
             <HideOnScroll>
-                <div>
-                    <AppBar>
-                        <Toolbar>
-                            <LoadBookPanelContainer/>
-                        </Toolbar>
-                    </AppBar>
-                </div>
+                <AppBar>
+                    <Toolbar>
+                        <LoadBookPanelContainer/>
+                    </Toolbar>
+                </AppBar>
             </HideOnScroll>
 
             <Toolbar/>
