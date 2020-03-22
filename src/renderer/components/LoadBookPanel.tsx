@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Book, createSimplifiedToTraditionalConverter, readEpub} from "epub-chinese-converter";
 import Button from '@material-ui/core/Button';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
 
 import {getElectronDialog} from "../helpers/helpers";
 import {BookState} from "../reducers/bookReducer";
-import { ButtonMouseEvent } from '../types';
+import {ButtonMouseEvent} from '../types';
 
 const converter = createSimplifiedToTraditionalConverter();
 
@@ -33,17 +33,17 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
     return (
         <form className="form-horizontal">
             <div className="form-group">
+                <EpubFilePicker onFilePathChange={handleFilePathChange} book={book}/>
                 <Button variant="contained" onClick={handleTranslateButtonClick} size="small">
                     To Traditional Chinese
                 </Button>
-                <EpubFilePicker onFilePathChange={handleFilePathChange} book={book} />
             </div>
         </form>
     );
 
-    function handleTranslateButtonClick(e: ButtonMouseEvent){
+    function handleTranslateButtonClick(e: ButtonMouseEvent) {
         e.preventDefault();
-        if (book.bookWithMeta){
+        if (book.bookWithMeta) {
             setBookContent(converter.convertBook(book.bookWithMeta))
         }
     }
@@ -63,10 +63,9 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
             <input className={classes.input} type="file" id="file-path-input" onClick={handleFileButtonClick}/>
             <label htmlFor="file-path-input">
                 <Button variant="contained" component="span" size="small">
-                    Choose Epub file
+                    {getLoadButtonText(book)}
                 </Button>
             </label>
-            <p className="help-block">{getHelpText(book)}</p>
         </>
     );
 
@@ -83,9 +82,9 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
     }
 }
 
-function getHelpText(book: BookState) {
+function getLoadButtonText(book: BookState) {
     if (book.isLoadingBook) {
-        return ``;
+        return `Loading`;
     } else if (book.bookWithMeta || book.fileName) {
         const array = [];
 
@@ -97,13 +96,12 @@ function getHelpText(book: BookState) {
             if ('creator' in book.bookWithMeta.metadata) {
                 array.push(book.bookWithMeta.metadata.creator);
             }
-        }
-        if (book.fileName) {
+        } else if (book.fileName) {
             array.push(book.fileName);
         }
         return array.join(' - ');
     } else {
-        return `Please choose an epub file.`;
+        return `Choose an epub file`;
     }
 }
 
