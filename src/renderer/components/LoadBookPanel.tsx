@@ -1,11 +1,26 @@
 import * as React from 'react';
 import {Book, createSimplifiedToTraditionalConverter, readEpub} from "epub-chinese-converter";
+import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import {getElectronDialog} from "../helpers/helpers";
 import {BookState} from "../reducers/bookReducer";
 import { ButtonMouseEvent } from '../types';
 
 const converter = createSimplifiedToTraditionalConverter();
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+        },
+        input: {
+            display: 'none',
+        },
+    }),
+);
 
 export interface Props {
     book: BookState;
@@ -18,7 +33,9 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
     return (
         <form className="form-horizontal">
             <div className="form-group">
-                <button onClick={handleTranslateButtonClick}>To Traditional Chinese</button>
+                <Button variant="contained" onClick={handleTranslateButtonClick} size="small">
+                    To Traditional Chinese
+                </Button>
                 <EpubFilePicker onFilePathChange={handleFilePathChange} book={book} />
             </div>
         </form>
@@ -39,10 +56,16 @@ const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: P
 };
 
 function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathChange: (filePath: string) => void }) {
+    const classes = useStyles();
+
     return (
         <>
-            <label htmlFor="file-path-input">Epub file:</label>
-            <input type="file" id="file-path-input" onClick={handleFileButtonClick}/>
+            <input className={classes.input} type="file" id="file-path-input" onClick={handleFileButtonClick}/>
+            <label htmlFor="file-path-input">
+                <Button variant="contained" component="span" size="small">
+                    Choose Epub file
+                </Button>
+            </label>
             <p className="help-block">{getHelpText(book)}</p>
         </>
     );
