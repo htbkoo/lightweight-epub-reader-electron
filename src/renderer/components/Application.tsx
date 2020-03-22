@@ -21,21 +21,8 @@ import LoadBookPanelContainer from "../containers/LoadBookPanelContainer";
 import BookTextAreaContainer from "../containers/BookTextAreaContainer";
 import BookmarkBarContainer from "../containers/BookmarkBarContainer";
 
-interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window?: () => Window;
-    children: React.ReactElement;
-}
-
-function HideOnScroll(props: Props) {
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
-    const trigger = useScrollTrigger({ target: window ? window() : undefined });
+function HideOnScroll({children}: { children: React.ReactElement; }) {
+    const trigger = useScrollTrigger();
 
     return (
         <Slide appear={false} direction="down" in={!trigger}>
@@ -44,18 +31,17 @@ function HideOnScroll(props: Props) {
     );
 }
 
-function EpubReaderAppBar(){
+function EpubReaderAppBar() {
     return (
         <AppBar>
             <Toolbar>
-                {/*<Typography variant="h6">Scroll to Hide App Bar</Typography>*/}
                 <LoadBookPanelContainer/>
             </Toolbar>
         </AppBar>
     );
 }
 
-function EpubReaderAppContent(){
+function EpubReaderAppContent() {
     const classes = useStyles();
     return (
         <div className={clsx(classes.textAreaContainer, classes.content)}>
@@ -64,20 +50,30 @@ function EpubReaderAppContent(){
     );
 }
 
-function HideAppBar(props: Props) {
+function Application() {
+    const classes = useStyles();
+
+    const trigger = useScrollTrigger();
+
+
     return (
-        <React.Fragment>
-            <CssBaseline />
-            <HideOnScroll {...props}>
-                <EpubReaderAppBar/>
+        // <div className={clsx(classes.body, classes.padding)}>
+        <div className={clsx(classes.body)}>
+            <CssBaseline/>
+            <HideOnScroll>
+                <div>
+                    <EpubReaderAppBar/>
+                </div>
             </HideOnScroll>
-            <Toolbar />
+
+            <Toolbar/>
+            {/*<Container className={classes.container}>*/}
             <Container>
-                <Box my={2}>
-                    <EpubReaderAppContent/>
+                <Box py={2}>
+                    <BookTextAreaContainer/>
                 </Box>
             </Container>
-        </React.Fragment>
+        </div>
     );
 }
 
@@ -85,12 +81,13 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        "body": {backgroundColor: "#111", "color": "aliceblue", "height": "100%", overflowY: "hidden" },
+        // "body": {backgroundColor: "#111", "color": "aliceblue", "height": "100%", overflowY: "hidden"},
+        "body": {backgroundColor: "#111", "color": "aliceblue", "minHeight": "100%"},
         "padding": {"padding": "1%", height: "100%", boxSizing: "border-box"}, // reference: https://stackoverflow.com/a/41663710
         "container": {"display": "flex", "flexDirection": "column", "height": "100%"},
         "ebook_content": {},
 
-        textAreaContainer:{
+        textAreaContainer: {
             height: "100%",
             overflow: "auto",
         },
@@ -189,30 +186,30 @@ function TemporaryDrawer() {
             return;
         }
 
-        setState({ ...state, [anchor]: open });
+        setState({...state, [anchor]: open});
     };
 
     const list = () => (
         <div
             className={classes.fullList}
             role="presentation"
-            onClick={toggleDrawer( false)}
-            onKeyDown={toggleDrawer( false)}
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
         >
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
                         {/*<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>*/}
-                        <ListItemText primary={text} />
+                        <ListItemText primary={text}/>
                     </ListItem>
                 ))}
             </List>
-            <Divider />
+            <Divider/>
             <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
                     <ListItem button key={text}>
                         {/*<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>*/}
-                        <ListItemText primary={text} />
+                        <ListItemText primary={text}/>
                     </ListItem>
                 ))}
             </List>
@@ -223,7 +220,7 @@ function TemporaryDrawer() {
         <div>
             <React.Fragment key={anchor}>
                 <Button onClick={toggleDrawer(true)}>{anchor}</Button>
-                <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer( false)}>
+                <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(false)}>
                     {list()}
                 </Drawer>
             </React.Fragment>
@@ -246,7 +243,7 @@ function PersistentDrawerLeft() {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
@@ -282,21 +279,21 @@ function PersistentDrawerLeft() {
                     {/*    {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}*/}
                     {/*</IconButton>*/}
                 </div>
-                <Divider />
+                <Divider/>
                 <List>
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
                             {/*<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>*/}
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>
-                <Divider />
+                <Divider/>
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
                             {/*<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>*/}
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>
@@ -306,7 +303,7 @@ function PersistentDrawerLeft() {
                     [classes.contentShift]: open,
                 })}
             >
-                <div className={classes.drawerHeader} />
+                <div className={classes.drawerHeader}/>
                 <Typography paragraph>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -340,7 +337,7 @@ function ClippedDrawer() {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" noWrap>
@@ -355,27 +352,27 @@ function ClippedDrawer() {
                     paper: classes.drawerPaper,
                 }}
             >
-                <div className={classes.toolbar} />
+                <div className={classes.toolbar}/>
                 <List>
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
                             {/*<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>*/}
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>
-                <Divider />
+                <Divider/>
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
                             {/*<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>*/}
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <div className={classes.toolbar} />
+                <div className={classes.toolbar}/>
                 <Typography paragraph>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -404,7 +401,7 @@ function ClippedDrawer() {
     );
 }
 
-const Application = () => {
+const BackupApplication = () => {
     const classes = useStyles();
 
     return (
