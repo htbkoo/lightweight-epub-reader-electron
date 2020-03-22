@@ -1,7 +1,10 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import {Book, createSimplifiedToTraditionalConverter, readEpub} from "epub-chinese-converter";
 import Button from '@material-ui/core/Button';
-import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import {getElectronDialog} from "../helpers/helpers";
 import {BookState} from "../reducers/bookReducer";
@@ -12,13 +15,24 @@ const converter = createSimplifiedToTraditionalConverter();
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            '& > *': {
-                margin: theme.spacing(1),
-            },
+            flexGrow: 1,
+        },
+        menuButton: {
+            marginRight: theme.spacing(2),
+        },
+        title: {
+            flexGrow: 1,
         },
         input: {
             display: 'none',
         },
+        container: {
+            display: "flex",
+            alignItems: "center",
+        },
+        inline: {
+            display: "inline"
+        }
     }),
 );
 
@@ -30,15 +44,30 @@ export interface Props {
 }
 
 const LoadBookPanel = ({book, notifyLoadingBook, setFileName, setBookContent}: Props) => {
+    const classes = useStyles();
     return (
-        <form className="form-horizontal">
-            <div className="form-group">
-                <EpubFilePicker onFilePathChange={handleFilePathChange} book={book}/>
-                <Button variant="contained" onClick={handleTranslateButtonClick} size="small">
-                    To Traditional Chinese
-                </Button>
-            </div>
-        </form>
+        <div className={clsx(classes.root, "form-group")}>
+            {/*TODO: investigate if `form` is necessary and clean up if not*/}
+            <form className="form-horizontal">
+                <div className={classes.container}>
+                    <div className={classes.inline}>
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon/>
+                        </IconButton>
+                    </div>
+
+                    <div className={clsx(classes.inline, classes.title)}>
+                        <EpubFilePicker onFilePathChange={handleFilePathChange} book={book}/>
+                    </div>
+
+                    <div className={classes.inline}>
+                        <Button variant="contained" onClick={handleTranslateButtonClick} size="small">
+                            To Traditional Chinese
+                        </Button>
+                    </div>
+                </div>
+            </form>
+        </div>
     );
 
     function handleTranslateButtonClick(e: ButtonMouseEvent) {
