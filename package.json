@@ -86,7 +86,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
-    "dompurify": "^2.0.8",
+    "dompurify": "^2.0.17",
     "electron-is-dev": "^1.1.0",
     "epub-chinese-converter": "0.1.6",
     "jquery": "^3.4.1",
