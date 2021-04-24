@@ -35,7 +35,10 @@
     "start",
     "typescript"
   ],
-  "author": "htbkoo",
+  "author": {
+    "name": "htbkoo",
+    "email": "h1017760@connect.hku.hk"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.8.6",
