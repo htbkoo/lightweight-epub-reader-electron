@@ -99,5 +99,8 @@
   },
   "optionalDependencies": {
     "zipfile": "*"
+  },
+  "engines": {
+    "node": ">=16 <17"
   }
 }
