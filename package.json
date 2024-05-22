@@ -1,6 +1,6 @@
 {
   "name": "lightweight-epub-reader-electron",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": " A lightweight epub-reader desktop app created with electron",
   "main": "./dist/main/main.js",
   "scripts": {
@@ -23,7 +23,8 @@
     "clean:dist": "rimraf dist",
     "clean:release": "rimraf release",
     "clean": "npm run clean:dist && npm run clean:release",
-    "dist": "npm run dep:clean --silent || npm run dep:install-no-optional && npm run clean && npm run build && cross-env NODE_ENV=production electron-builder"
+    "dist:without-install": "npm run clean && npm run build && cross-env NODE_ENV=production electron-builder",
+    "dist": "npm run dep:clean --silent || npm i && npm run dist:without-install"
   },
   "repository": "https://github.com/htbkoo/lightweight-epub-reader-electron",
   "keywords": [
@@ -38,12 +39,12 @@
   "author": "htbkoo",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.8.6",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.6",
-    "@babel/preset-react": "^7.8.3",
-    "@babel/preset-typescript": "^7.8.3",
+    "@babel/core": "7.18.6",
+    "@babel/plugin-proposal-class-properties": "7.18.6",
+    "@babel/polyfill": "7.12.1",
+    "@babel/preset-env": "7.18.6",
+    "@babel/preset-react": "7.18.6",
+    "@babel/preset-typescript": "7.18.6",
     "@hot-loader/react-dom": "^16.12.0",
     "@types/dompurify": "^2.0.1",
     "@types/electron-devtools-installer": "^2.2.0",
@@ -95,5 +96,11 @@
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "typesafe-actions": "^5.1.0"
+  },
+  "optionalDependencies": {
+    "zipfile": "*"
+  },
+  "engines": {
+    "node": ">=16 <17"
   }
 }
