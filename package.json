@@ -23,7 +23,8 @@
     "clean:dist": "rimraf dist",
     "clean:release": "rimraf release",
     "clean": "npm run clean:dist && npm run clean:release",
-    "dist": "npm run dep:clean --silent || npm run dep:install-no-optional && npm run clean && npm run build && cross-env NODE_ENV=production electron-builder"
+    "dist:without-install": "npm run clean && npm run build && cross-env NODE_ENV=production electron-builder",
+    "dist": "npm run dep:clean --silent || npm i && npm run dist:without-install"
   },
   "repository": "https://github.com/htbkoo/lightweight-epub-reader-electron",
   "keywords": [
