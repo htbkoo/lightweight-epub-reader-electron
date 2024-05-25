@@ -69,6 +69,7 @@
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "jest": "^29.7.0",
     "node-loader": "^2.0.0",
+    "prettier": "^3.2.5",
     "react-test-renderer": "17.x.x",
     "redux-devtools-extension": "^2.13.8",
     "rimraf": "^5.0.7",
