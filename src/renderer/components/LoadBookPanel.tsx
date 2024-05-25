@@ -41,12 +41,13 @@ export interface Props {
     app: AppState;
     book: BookState;
     setBookContent: (book: Book.BookWithMeta) => any;
+    setBookError: (error: unknown) => any;
     setFileName: (fileName: string) => any;
     notifyLoadingBook: () => any;
     setDrawerOpen: (open: boolean) => any;
 }
 
-const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookContent, setDrawerOpen}: Props) => {
+const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookContent, setBookError, setDrawerOpen}: Props) => {
     const classes = useStyles();
     return (
         <div className={clsx(classes.root, "form-group")}>
@@ -99,7 +100,7 @@ const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookConten
     function handleFilePathChange(bookUrl: string) {
         notifyLoadingBook();
         setFileName(bookUrl);
-        return readEpub(bookUrl).then(setBookContent);
+        return readEpub(bookUrl).then(setBookContent).catch(setBookError);
     }
 };
 
