@@ -119,7 +119,7 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
 
     function handleFileButtonClick(evt: ButtonMouseEvent) {
         evt.preventDefault();
-          ipcApi.invoke("dialog:openEpubFile")
+          ipcApi.openEpubFile()
           .then((filePaths) => {
               if (filePaths === undefined) { return } // Dialog was cancelled
 

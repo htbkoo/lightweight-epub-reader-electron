@@ -14,44 +14,11 @@ import {
 } from "electron";
 import { DIALOG_API_KEY, IPC_CHANNELS } from "./constants";
 
-// White-listed channels.
-const ipc = {
-  render: {
-    // From render to main.
-    send: [],
-    // From main to render.
-    receive: [],
-    // From render to main and back again.
-    sendReceive: [
-      IPC_CHANNELS.DIALOG.OPEN_EPUB_FILE, // Channel name
-    ] as const,
-  },
-};
-
-type InvokeApis = typeof ipc['render']['sendReceive'][number];
-
+// Exporting `api` object, so that it would go well with TypeScript
+// Reference: https://stackoverflow.com/a/71078436/10734272
 export const api = {
-  // From render to main.
-  send: (channel, args) => {
-    const validChannels = ipc.render.send;
-    if (validChannels.includes(channel)) {
-      ipcRenderer.send(channel, args);
-    }
-  },
-  // From main to render.
-  receive: (channel, listener) => {
-    const validChannels = ipc.render.receive;
-    if (validChannels.includes(channel)) {
-      // Deliberately strip event as it includes `sender`.
-      ipcRenderer.on(channel, (event, ...args) => listener(...args));
-    }
-  },
-  // From render to main and back again.
-  invoke: (channel: InvokeApis, args?: Array<any>) => {
-    const validChannels = ipc.render.sendReceive;
-    if (validChannels.includes(channel)) {
-      return ipcRenderer.invoke(channel, args);
-    }
+  openEpubFile: () => {
+    return ipcRenderer.invoke(IPC_CHANNELS.DIALOG.OPEN_EPUB_FILE);
   },
 };
 
@@ -69,8 +36,6 @@ export const configureIpcForDialogOpenEpubFile = (
 ) => {
   ipcMain.handle(IPC_CHANNELS.DIALOG.OPEN_EPUB_FILE, () => {
     const options: OpenDialogOptions = {
-      // properties: ['openFile', 'multiSelections']
-
       properties: ["openFile"],
       filters: [{ name: "epub", extensions: ["epub"] }],
     };
