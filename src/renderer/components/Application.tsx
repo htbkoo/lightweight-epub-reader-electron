@@ -1,4 +1,3 @@
-import {hot} from 'react-hot-loader/root';
 import * as React from 'react';
 import clsx from 'clsx';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
@@ -64,4 +63,4 @@ function Application() {
     );
 }
 
-export default hot(Application);
+export default Application;

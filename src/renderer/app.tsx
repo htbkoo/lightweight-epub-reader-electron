@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {AppContainer} from 'react-hot-loader';
 import {ThemeProvider} from '@material-ui/core/styles';
 
 import Application from './components/Application';
@@ -16,13 +15,11 @@ document.body.appendChild(mainElement);
 // Render components
 const render = (Component: () => JSX.Element) => {
     ReactDOM.render(
-        <AppContainer>
-            <ThemeProvider theme={createEpubReaderTheme()}>
-                <Provider store={store}>
-                    <Component/>
-                </Provider>
-            </ThemeProvider>
-        </AppContainer>,
+        <ThemeProvider theme={createEpubReaderTheme()}>
+            <Provider store={store}>
+                <Component/>
+            </Provider>
+        </ThemeProvider>,
         mainElement
     );
 };
