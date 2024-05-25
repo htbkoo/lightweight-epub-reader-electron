@@ -119,10 +119,7 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
 
     function handleFileButtonClick(evt: ButtonMouseEvent) {
         evt.preventDefault();
-
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          ipcRender.invoke('dialog:openMultiFileSelect')
+          ipcApi.invoke("dialog:openEpubFile")
           .then((filePaths) => {
               if (filePaths === undefined) { return } // Dialog was cancelled
 
