@@ -86,7 +86,7 @@
     "dompurify": "^2.0.8",
     "electron-is-dev": "^1.1.0",
     "electron-squirrel-startup": "^1.0.1",
-    "epub-chinese-converter": "0.1.6",
+    "epub-chinese-converter": "0.2.1",
     "node-polyfill-webpack-plugin": "^4.0.0",
     "react": "17.x.x",
     "react-dom": "17.x.x",
