@@ -18,7 +18,13 @@ window.addEventListener("DOMContentLoaded", () => {
 (function hackToFixElectronDialogAtReact(){
   console.log(`at hackToFixElectronDialogAtReact`);
 
-  const { dialog } = require('electron').remote;
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const electron = require('electron');
+  if (!((electron as any).remote)) {
+    return;
+  }
+
+  const { dialog } = (electron as any).remote;
   (window as any).electron = {};
   (window as any).electron.dialog = dialog;
 })();
