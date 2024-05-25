@@ -13,12 +13,23 @@ import {
   OpenDialogOptions,
 } from "electron";
 import { DIALOG_API_KEY, IPC_CHANNELS } from "./constants";
+import {
+  Book,
+  createSimplifiedToTraditionalConverter,
+  readEpub,
+} from "epub-chinese-converter";
 
 // Exporting `api` object, so that it would go well with TypeScript
 // Reference: https://stackoverflow.com/a/71078436/10734272
 export const api = {
   openEpubFile: () => {
-    return ipcRenderer.invoke(IPC_CHANNELS.DIALOG.OPEN_EPUB_FILE);
+    return ipcRenderer.invoke(IPC_CHANNELS.OPEN_EPUB_FILE);
+  },
+  readEpubFile: (bookUrl: string) => {
+    return ipcRenderer.invoke(IPC_CHANNELS.READ_EPUB_FILE, bookUrl);
+  },
+  translateBookS2T: (book: Book.BookWithMeta) => {
+    return ipcRenderer.invoke(IPC_CHANNELS.TRANSLATE_BOOK__S2T, book);
   },
 };
 
@@ -34,7 +45,7 @@ export const createContextBridgeForDialogOpenEpubFile = () => {
 export const configureIpcForDialogOpenEpubFile = (
   browserWindow: BrowserWindow,
 ) => {
-  ipcMain.handle(IPC_CHANNELS.DIALOG.OPEN_EPUB_FILE, () => {
+  ipcMain.handle(IPC_CHANNELS.OPEN_EPUB_FILE, () => {
     const options: OpenDialogOptions = {
       properties: ["openFile"],
       filters: [{ name: "epub", extensions: ["epub"] }],
@@ -51,4 +62,13 @@ export const configureIpcForDialogOpenEpubFile = (
         return result.filePaths;
       });
   });
+  ipcMain.handle(IPC_CHANNELS.READ_EPUB_FILE, (_, bookUrl: string) => {
+    return readEpub(bookUrl);
+  });
+  ipcMain.handle(
+    IPC_CHANNELS.TRANSLATE_BOOK__S2T,
+    (_, book: Book.BookWithMeta) => {
+      return createSimplifiedToTraditionalConverter().convertBook(book);
+    },
+  );
 };

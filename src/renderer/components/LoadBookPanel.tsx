@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {Book, createSimplifiedToTraditionalConverter, readEpub} from "epub-chinese-converter";
+import {Book} from "epub-chinese-converter";
 import Button from '@material-ui/core/Button';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,8 +9,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {BookState} from "../reducers/bookReducer";
 import {ButtonMouseEvent} from './types';
 import {AppState} from "../reducers/appReducer";
-
-// const converter = createSimplifiedToTraditionalConverter();
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -92,14 +90,14 @@ const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookConten
     function handleTranslateButtonClick(e: ButtonMouseEvent) {
         e.preventDefault();
         if (book.bookWithMeta) {
-            // setBookContent(converter.convertBook(book.bookWithMeta))
+          ipcApi.translateBookS2T(book.bookWithMeta).then(setBookContent);
         }
     }
 
     function handleFilePathChange(bookUrl: string) {
         notifyLoadingBook();
         setFileName(bookUrl);
-        // return readEpub(bookUrl).then(setBookContent).catch(setBookError);
+        return ipcApi.readEpubFile(bookUrl).then(setBookContent).catch(setBookError);
     }
 };
 
@@ -117,15 +115,14 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
         </>
     );
 
-    function handleFileButtonClick(evt: ButtonMouseEvent) {
+    async function handleFileButtonClick(evt: ButtonMouseEvent) {
         evt.preventDefault();
-          ipcApi.openEpubFile()
-          .then((filePaths) => {
-              if (filePaths === undefined) { return } // Dialog was cancelled
+        const filePaths = await ipcApi.openEpubFile();
 
-              console.log(`opened: ${JSON.stringify(filePaths)}`);
-              return onFilePathChange(filePaths[0]);
-          })
+        if (filePaths === undefined) { return } // Dialog was cancelled
+
+        console.log(`opened: ${JSON.stringify(filePaths)}`);
+        return onFilePathChange(filePaths[0]);
     }
 }
 
