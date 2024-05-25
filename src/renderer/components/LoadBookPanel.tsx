@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import {BookState} from "../reducers/bookReducer";
-import {ButtonMouseEvent} from '../types';
+import {ButtonMouseEvent} from './types';
 import {AppState} from "../reducers/appReducer";
 
 // const converter = createSimplifiedToTraditionalConverter();
