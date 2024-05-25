@@ -37,8 +37,6 @@ function HideOnScroll({children}: { children: React.ReactElement; }) {
 function Application() {
     const classes = useStyles();
 
-    const trigger = useScrollTrigger();
-
     return (
         <div className={clsx(classes.body)}>
             <CssBaseline/>
