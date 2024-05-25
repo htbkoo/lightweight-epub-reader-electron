@@ -10,7 +10,7 @@ exports[`<BookTextArea/> renders book content correctly when book loaded 1`] = `
 <div>
   <div
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "this is chapter 1",
       }
     }
@@ -18,7 +18,7 @@ exports[`<BookTextArea/> renders book content correctly when book loaded 1`] = `
   />
   <div
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "this is chapter 2",
       }
     }
