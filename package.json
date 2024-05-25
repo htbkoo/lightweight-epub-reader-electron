@@ -57,6 +57,7 @@
     "@types/react": "17.x.x",
     "@types/react-dom": "17.x.x",
     "@types/react-test-renderer": "^18.3.0",
+    "@types/webpack-env": "^1.18.5",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
