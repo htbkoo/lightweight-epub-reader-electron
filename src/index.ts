@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from "electron";
+import electronIsDev from "electron-is-dev";
 
 import { configureIpcForDialogOpenEpubFile } from "./ipcApi";
 
@@ -28,8 +29,14 @@ const createWindow = (): void => {
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (electronIsDev) {
+    console.log("Running in development");
+
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools();
+  } else {
+    console.debug("Running in production");
+  }
 
   // Setup IPC listeners
   configureIpcForDialogOpenEpubFile(mainWindow);
