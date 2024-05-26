@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog as electronDialog, ipcMain as electronIpcMain, OpenDialogOptions} from 'electron';
+import { app, BrowserWindow } from "electron";
 
 import { configureIpcForDialogOpenEpubFile } from "./ipcApi";
 
