@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 
 import {RootState} from '../reducers';
-import {notifyLoadingBook, setBookContent, setBookFileName} from '../actions/bookActions';
+import { notifyLoadingBook, setBookContent, setBookError, setBookFileName } from '../actions/bookActions';
 import LoadBookPanel from "../components/LoadBookPanel";
 import {RootAction} from "../types";
 import {setBookmarkDrawerOpen} from "../actions/appActions";
@@ -13,6 +13,7 @@ const mapStateToProps = (state: RootState) => (
 
 const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => ({
     setBookContent: book => dispatch(setBookContent(book)),
+    setBookError: error => dispatch(setBookError(error)),
     setFileName: fileName => dispatch(setBookFileName(fileName)),
     notifyLoadingBook: () => dispatch(notifyLoadingBook()),
     setDrawerOpen: open => dispatch(setBookmarkDrawerOpen(open)),

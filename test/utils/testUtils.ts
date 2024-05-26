@@ -6,5 +6,5 @@ export function createAppState(override: Partial<AppState> = {}): AppState {
 }
 
 export function createBookState(override: Partial<BookState> = {}): BookState {
-    return {isLoadingBook: false, fileName: null, bookWithMeta: null, ...override};
+    return {isLoadingBook: false, error: null, fileName: null, bookWithMeta: null, ...override};
 }

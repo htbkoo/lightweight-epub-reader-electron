@@ -1,4 +1,3 @@
-import {hot} from 'react-hot-loader/root';
 import * as React from 'react';
 import clsx from 'clsx';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
@@ -38,8 +37,6 @@ function HideOnScroll({children}: { children: React.ReactElement; }) {
 function Application() {
     const classes = useStyles();
 
-    const trigger = useScrollTrigger();
-
     return (
         <div className={clsx(classes.body)}>
             <CssBaseline/>
@@ -64,4 +61,4 @@ function Application() {
     );
 }
 
-export default hot(Application);
+export default Application;

@@ -1,17 +1,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {Book, createSimplifiedToTraditionalConverter, readEpub} from "epub-chinese-converter";
+import {Book} from "epub-chinese-converter";
 import Button from '@material-ui/core/Button';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import {getElectronDialog} from "../helpers/helpers";
 import {BookState} from "../reducers/bookReducer";
-import {ButtonMouseEvent} from '../types';
+import {ButtonMouseEvent} from './types';
 import {AppState} from "../reducers/appReducer";
-
-const converter = createSimplifiedToTraditionalConverter();
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -41,12 +38,13 @@ export interface Props {
     app: AppState;
     book: BookState;
     setBookContent: (book: Book.BookWithMeta) => any;
+    setBookError: (error: unknown) => any;
     setFileName: (fileName: string) => any;
     notifyLoadingBook: () => any;
     setDrawerOpen: (open: boolean) => any;
 }
 
-const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookContent, setDrawerOpen}: Props) => {
+const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookContent, setBookError, setDrawerOpen}: Props) => {
     const classes = useStyles();
     return (
         <div className={clsx(classes.root, "form-group")}>
@@ -92,14 +90,14 @@ const LoadBookPanel = ({app, book, notifyLoadingBook, setFileName, setBookConten
     function handleTranslateButtonClick(e: ButtonMouseEvent) {
         e.preventDefault();
         if (book.bookWithMeta) {
-            setBookContent(converter.convertBook(book.bookWithMeta))
+          ipcApi.translateBookS2T(book.bookWithMeta).then(setBookContent);
         }
     }
 
     function handleFilePathChange(bookUrl: string) {
         notifyLoadingBook();
         setFileName(bookUrl);
-        return readEpub(bookUrl).then(setBookContent);
+        return ipcApi.readEpubFile(bookUrl).then(setBookContent).catch(setBookError);
     }
 };
 
@@ -117,16 +115,14 @@ function EpubFilePicker({book, onFilePathChange}: { book: BookState, onFilePathC
         </>
     );
 
-    function handleFileButtonClick(evt: ButtonMouseEvent) {
+    async function handleFileButtonClick(evt: ButtonMouseEvent) {
         evt.preventDefault();
+        const filePaths = await ipcApi.openEpubFile();
 
-        getElectronDialog().showOpenDialog({properties: ['openFile',], filters: [{name: "epub", extensions: ['epub']}]})
-            .then(({canceled, filePaths}) => {
-                if (!canceled && filePaths) {
-                    console.log(`opened: ${JSON.stringify(filePaths)}`);
-                    return onFilePathChange(filePaths[0]);
-                }
-            });
+        if (filePaths === undefined) { return } // Dialog was cancelled
+
+        console.log(`opened: ${JSON.stringify(filePaths)}`);
+        return onFilePathChange(filePaths[0]);
     }
 }
 

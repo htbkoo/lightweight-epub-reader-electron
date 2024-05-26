@@ -62,6 +62,7 @@ describe('<LoadBookPanel/>', () => {
         const props: Props = {
             setFileName: jest.fn(),
             setBookContent: jest.fn(),
+            setBookError: jest.fn(),
             notifyLoadingBook: jest.fn(),
             setDrawerOpen: jest.fn(),
             book: createBookState(),
